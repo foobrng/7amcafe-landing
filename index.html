@@ -4,20 +4,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The 7AM Cafe - Fuel Your Mornings, Redefined</title>
+  <title>The Bowl Series 1.0 - Registration</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Uber-Inspired Color Palette & Font */
+    /* Updated Color Palette with Red */
     :root {
-      --color-dark: #1E1E1E; /* Primary dark for text/backgrounds */
-      --color-light: #FFFFFF; /* Primary light for backgrounds/text */
-      --color-accent: #06C167; /* Uber's signature green */
-      --color-accent-dark: #05A056; /* Darker accent for hover */
-      --color-light-gray: #F2F2F2; /* For subtle section backgrounds */
-      --color-medium-gray: #6A6A6A; /* For secondary text/borders */
-      --color-border-gray: #E0E0E0; /* Lighter border for clean look */
-      --color-text-light-dark: #333333; /* Slightly lighter dark for body text */
+      --color-dark: #1E1E1E;
+      --color-light: #FFFFFF;
+      --color-accent: #E63946; /* Red accent */
+      --color-accent-dark: #C1121F; /* Darker red */
+      --color-light-gray: #F2F2F2;
+      --color-medium-gray: #6A6A6A;
+      --color-border-gray: #E0E0E0;
+      --color-text-light-dark: #333333;
     }
 
     body {
@@ -28,420 +29,374 @@
       scroll-behavior: smooth;
     }
 
-    h1, h2, h3, h4 {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700; /* Bold for impact */
-      color: var(--color-dark);
+    /* Form Container with White Background */
+    .registration-container {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin: 2rem auto;
     }
 
-    /* General Button Styling (Uber-like) */
-    .btn-primary {
-      background-color: var(--color-dark);
-      color: var(--color-light);
-      font-weight: 600;
-      padding: 1rem 2.5rem;
-      border-radius: 6px; /* Slightly rounded, not pill */
-      transition: all 0.3s ease-in-out;
-      box-shadow: none; /* Uber's buttons are typically flat, subtle shadow can be added if desired */
-    }
-    .btn-primary:hover {
-      background-color: var(--color-medium-gray);
-      transform: translateY(-1px);
-    }
-
-    .btn-accent {
-      background-color: var(--color-accent); /* Green accent */
-      color: var(--color-light);
-      font-weight: 600;
-      padding: 1rem 2.5rem;
-      border-radius: 6px; /* Slightly rounded */
-      transition: all 0.3s ease-in-out;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    }
-    .btn-accent:hover {
-      background-color: var(--color-accent-dark);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Form Input Styling (Uber-like) */
-    .uber-input {
+    /* Tabbed Form Styles */
+    .form-container {
       width: 100%;
-      padding: 1rem 1.25rem;
+    }
+
+    .form-tabs {
+      display: flex;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--color-border-gray);
+    }
+
+    .form-tab {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      text-align: center;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      font-weight: 600;
+      color: var(--color-medium-gray);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .form-tab.active {
+      color: var(--color-accent);
+      border-bottom-color: var(--color-accent);
+    }
+
+    .form-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .form-content.active {
+      display: block;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .input-group {
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      padding: 1rem;
       border: 1px solid var(--color-border-gray);
       border-radius: 6px;
       font-size: 1rem;
-      color: var(--color-dark);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background-color: rgba(255, 255, 255, 0.9);
     }
-    .uber-input:focus {
-      border-color: var(--color-accent);
-      box-shadow: 0 0 0 1px var(--color-accent); /* Thin border highlight */
-      outline: none;
+
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236A6A6A' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 16px;
     }
-    .uber-input::placeholder {
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .checkbox-label {
+      margin-left: 0.5rem;
+      font-size: 0.875rem;
       color: var(--color-medium-gray);
     }
 
-    /* Custom radio styling for Uber look */
-    .uber-radio {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      width: 1.15rem; /* Slightly smaller */
-      height: 1.15rem;
-      border: 2px solid var(--color-medium-gray);
-      border-radius: 50%;
-      outline: none;
-      cursor: pointer;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.2s ease-in-out;
-      flex-shrink: 0; /* Prevent shrinking in flex container */
+    .success-message {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background-color: rgba(230, 57, 70, 0.1);
+      border-left: 3px solid var(--color-accent);
+      color: var(--color-dark);
     }
-    .uber-radio:checked {
+
+    .btn-accent {
       background-color: var(--color-accent);
-      border-color: var(--color-accent);
-    }
-    .uber-radio:checked::after {
-      content: '';
-      width: 0.45rem; /* Smaller dot */
-      height: 0.45rem;
-      border-radius: 50%;
-      background-color: var(--color-light);
-    }
-    .uber-radio:focus {
-      box-shadow: 0 0 0 2px rgba(6, 193, 103, 0.4); /* Green focus ring */
-    }
-
-    /* Custom checkbox styling for Uber look */
-    .uber-checkbox {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      width: 1.15rem;
-      height: 1.15rem;
-      border: 2px solid var(--color-medium-gray);
-      border-radius: 3px; /* Slightly rounded square */
-      outline: none;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
       cursor: pointer;
-      display: inline-block;
-      vertical-align: middle;
-      position: relative;
-      transition: all 0.2s ease-in-out;
-      flex-shrink: 0; /* Prevent shrinking */
-    }
-    .uber-checkbox:checked {
-      background-color: var(--color-accent);
-      border-color: var(--color-accent);
-    }
-    .uber-checkbox:checked::after {
-      content: '✔';
-      font-size: 0.8rem; /* Smaller checkmark */
-      color: var(--color-light);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .uber-checkbox:focus {
-      box-shadow: 0 0 0 2px rgba(6, 193, 103, 0.4); /* Green focus ring */
+      transition: background-color 0.3s ease;
     }
 
-    /* FAQ item styling - Uber-like clean list */
-    .faq-item {
-        background-color: var(--color-light);
-        border-bottom: 1px solid var(--color-border-gray); /* Subtle separator */
-        padding: 1.5rem 0;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-    }
-    .faq-item:hover {
-        background-color: var(--color-light-gray);
-    }
-    .faq-item.active .faq-question {
-        color: var(--color-accent); /* Green text for active question */
-        font-weight: 600;
-    }
-    .faq-item.active svg {
-        color: var(--color-accent);
-        transform: rotate(90deg); /* Rotate icon on active */
-    }
-    .faq-answer {
-        color: var(--color-text-light-dark);
-        padding-top: 1rem;
-        max-height: 0; /* For collapse effect */
-        overflow: hidden;
-        transition: max-height 0.4s ease-out, padding-top 0.4s ease-out;
-    }
-    .faq-answer.show {
-        max-height: 200px; /* Adjust as needed for max content */
-        padding-top: 1rem;
-        transition: max-height 0.5s ease-in, padding-top 0.5s ease-in;
+    .btn-accent:hover {
+      background-color: var(--color-accent-dark);
     }
 
-    /* For animation effect - use Tailwind's animation utility if needed, or custom JS */
-    .fade-in-up {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    .event-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
     }
-    .fade-in-up.visible {
-      opacity: 1;
-      transform: translateY(0);
+
+    .event-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .event-subtitle {
+      font-size: 1rem;
+      color: var(--color-medium-gray);
+      font-style: italic;
+    }
+
+    .footer-text {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--color-medium-gray);
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-border-gray);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      .input-row {
+        flex-direction: column;
+        gap: 0;
+      }
+      
+      .form-tab {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+      }
+      
+      .registration-container {
+        padding: 1.5rem;
+        margin: 1rem;
+      }
+      
+      .event-title {
+        font-size: 1.5rem;
+      }
     }
   </style>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Intersection Observer for fade-in-up animation
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-      };
-
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            // observer.unobserve(entry.target); // Uncomment to animate only once
-          } else {
-            // Optional: Remove 'visible' class if element should fade out when out of view
-            // entry.target.classList.remove('visible');
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll('.fade-in-up').forEach(element => {
-        observer.observe(element);
-      });
-
-      // FAQ Accordion Functionality (Uber-like, clean)
-      const faqItems = document.querySelectorAll('.faq-item');
-      faqItems.forEach(item => {
-        item.addEventListener('click', () => {
-          const answer = item.querySelector('.faq-answer');
-          const svgIcon = item.querySelector('svg');
-
-          // Toggle 'active' class on clicked item
-          item.classList.toggle('active');
-
-          // Toggle 'show' class for answer to expand/collapse
-          if (answer.classList.contains('show')) {
-            answer.classList.remove('show');
-            answer.style.maxHeight = '0';
-            answer.style.paddingTop = '0';
-          } else {
-            // Collapse others if only one open at a time is desired (uncomment below)
-            // faqItems.forEach(otherItem => {
-            //   if (otherItem !== item && otherItem.classList.contains('active')) {
-            //     otherItem.classList.remove('active');
-            //     const otherAnswer = otherItem.querySelector('.faq-answer');
-            //     const otherSvgIcon = otherItem.querySelector('svg');
-            //     otherAnswer.classList.remove('show');
-            //     otherAnswer.style.maxHeight = '0';
-            //     otherAnswer.style.paddingTop = '0';
-            //     otherSvgIcon.style.transform = 'rotate(0deg)';
-            //   }
-            // });
-
-            answer.classList.add('show');
-            // Set max-height to scrollHeight for smooth transition based on content
-            answer.style.maxHeight = answer.scrollHeight + 'px';
-            answer.style.paddingTop = '1rem';
-          }
-
-          // Icon rotation handled by CSS active class
-        });
-      });
-
-      // Set current year in footer
-      document.getElementById('currentYear').textContent = new Date().getFullYear();
-    });
-  </script>
 </head>
 
 <body>
 
   <section id="hero" class="relative min-h-screen flex items-center p-4 bg-dark overflow-hidden">
     <div class="absolute inset-0 z-0 opacity-100" style="background-image: url('https://res.cloudinary.com/simeon/image/upload/v1751034905/7am%20cafe/lllof.jpg'); background-size: cover; background-position: center;"></div>
-    <div class="absolute inset-0 bg-dark/60 z-0"></div> <div class="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-20">
-      <div class="text-light text-center md:text-left fade-in-up">
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 drop-shadow-lg">
-          Fuel Your Mornings.<br> Grab & Go.
-        </h1>
-        <p class="text-xl md:text-2xl text-light/90 mb-8 drop-shadow max-w-lg md:max-w-none mx-auto md:mx-0">
-          Freshly crafted gourmet sandwiches & artisan coffee for your modern pace.
-        </p>
+    <div class="absolute inset-0 bg-dark/60 z-0"></div>
+    
+    <!-- Hero header with logo and social icons -->
+    <div class="absolute top-0 left-0 right-0 z-20 py-6 px-4 md:px-8 flex justify-between items-center hero-header">
+      <!-- Logo as image (replace src with your logo) -->
+      <img src="https://via.placeholder.com/150x40?text=The+Bowl+Series" alt="The Bowl Series Logo" class="logo">
+      
+      <div class="social-icons">
+        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
       </div>
-
-      <div id="registration-form" class="bg-light p-6 md:p-8 rounded-lg shadow-2xl w-full max-w-md mx-auto fade-in-up">
-        <h3 class="text-2xl font-bold mb-6 text-dark text-center">Join the Breakfast Club!</h3>
-        <form class="space-y-5">
-          <div>
-            <label for="fullName" class="sr-only">Full Name</label>
-            <input type="text" id="fullName" name="name" placeholder="Full Name" required class="uber-input">
-          </div>
-          <div>
-            <label for="emailAddress" class="sr-only">Email Address</label>
-            <input type="email" id="emailAddress" name="email" placeholder="Email Address" required class="uber-input">
-          </div>
-          <div>
-            <label for="phoneNumber" class="sr-only">Phone Number</label>
-            <input type="tel" id="phoneNumber" name="phone" placeholder="Phone Number (Optional)" class="uber-input">
-          </div>
-
-          <div class="space-y-3">
-            <p class="font-semibold text-dark text-lg">How will you be joining?</p>
-            <div class="flex flex-wrap gap-x-8 gap-y-4">
-              <label class="flex items-center space-x-3 cursor-pointer text-base text-medium-gray">
-                <input type="radio" name="role" value="player" required class="uber-radio">
-                <span>Player</span>
-              </label>
-              <label class="flex items-center space-x-3 cursor-pointer text-base text-medium-gray">
-                <input type="radio" name="role" value="audience" class="uber-radio">
-                <span>Audience</span>
-              </label>
+    </div>
+    
+    <!-- Centered registration form with tabs -->
+    <div class="relative z-10 w-full max-w-md mx-auto registration-container fade-in-up">
+      <div class="event-header">
+        <h1 class="event-title">The Bowl Series 1.0</h1>
+        <p class="event-subtitle">"You either bring the heat or you stay home."</p>
+      </div>
+      
+      <div class="form-container">
+        <div class="form-tabs">
+          <button class="form-tab active" onclick="switchTab('player')">Player Registration</button>
+          <button class="form-tab" onclick="switchTab('audience')">Audience Registration</button>
+        </div>
+        
+        <!-- Player Registration Form -->
+        <form id="player-form" class="form-content active">
+          <div class="input-row">
+            <div class="input-group">
+              <input type="text" class="form-input" placeholder="Full Name" required>
+            </div>
+            <div class="input-group">
+              <input type="tel" class="form-input" placeholder="Phone Number" required>
             </div>
           </div>
-
-          <label class="flex items-start space-x-3 text-sm cursor-pointer text-medium-gray mt-4">
-            <input type="checkbox" name="waitlist" class="mt-1 uber-checkbox">
-            <span>Yes, sign me up for the exclusive waitlist for The 7AM Café's official launch!</span>
-          </label>
-
+          
+          <div class="input-row">
+            <div class="input-group">
+              <input type="email" class="form-input" placeholder="Email Address" required>
+            </div>
+            <div class="input-group">
+              <input type="text" class="form-input" placeholder="Hostel Name" required>
+            </div>
+          </div>
+          
+          <div class="input-row">
+            <div class="input-group">
+              <select class="form-select" required>
+                <option value="">Position Preference</option>
+                <option value="goalkeeper">GK</option>
+                <option value="defender">Defender</option>
+                <option value="midfielder">Midfielder</option>
+                <option value="forward">Forward</option>
+                <option value="any">Any</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <select class="form-select" required>
+                <option value="">Team Selection</option>
+                <option value="g-team">Under G Team</option>
+                <option value="adenike-team">Adenike Team</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="input-group">
+            <select class="form-select" required>
+              <option value="">Experience Level</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+          
+          <div class="checkbox-group">
+            <input type="checkbox" id="player-newsletter" class="uber-checkbox">
+            <label for="player-newsletter" class="checkbox-label">Subscribe to Newsletter</label>
+          </div>
+          
           <button type="submit" class="btn-accent w-full text-lg py-3 mt-6">
-            Register & Get Ready!
+            Register as Player
           </button>
+          <div id="player-success" class="success-message">
+            🎉 Player registration successful! We'll contact you with match details.
+          </div>
         </form>
-      </div>
-    </div>
-  </section>
-
-  <section id="offerings" class="max-w-6xl mx-auto px-4 py-20 fade-in-up">
-    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16">Curated Selections</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
-      <div class="bg-light p-6 md:p-8 rounded-lg shadow-md border border-border-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <img src="https://images.unsplash.com/photo-1549489679-5095393d9a0d?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gourmet Sandwich" class="rounded-lg mb-6 w-full h-52 object-cover shadow-sm">
-        <h3 class="font-bold text-2xl mb-3 text-dark">Signature Sandwiches</h3>
-        <p class="text-base text-medium-gray">Crafted with fresh, premium ingredients and unique flavor combinations to energize your morning.</p>
-        <a href="#" class="inline-block mt-6 text-accent font-semibold hover:underline">Learn More &rarr;</a>
-      </div>
-      <div class="bg-light p-6 md:p-8 rounded-lg shadow-md border border-border-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Perfect Iced Coffee" class="rounded-lg mb-6 w-full h-52 object-cover shadow-sm">
-        <h3 class="font-bold text-2xl mb-3 text-dark">Artisan Iced Coffee</h3>
-        <p class="text-base text-medium-gray">Chilled perfection made with ethically sourced beans, offering the ideal wake-up call or pick-me-up.</p>
-        <a href="#" class="inline-block mt-6 text-accent font-semibold hover:underline">Learn More &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" class="py-20 bg-light-gray fade-in-up">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-12">Frequently Asked Questions</h2>
-      <div class="divide-y divide-border-gray">
-        <div class="faq-item">
-          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
-            <span>What is The 7AM Café?</span>
-            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        
+        <!-- Audience Registration Form -->
+        <form id="audience-form" class="form-content">
+          <div class="input-row">
+            <div class="input-group">
+              <input type="text" class="form-input" placeholder="Full Name" required>
+            </div>
+            <div class="input-group">
+              <input type="tel" class="form-input" placeholder="Phone Number" required>
+            </div>
           </div>
-          <div class="faq-answer">
-            <p>The 7AM Café is your new go-to destination for a vibrant start to your day. We're a dynamic breakfast and sandwich spot designed for the modern pace of life, focusing on efficiency and quality. We aim to redefine convenience with gourmet taste.</p>
+          
+          <div class="input-row">
+            <div class="input-group">
+              <input type="email" class="form-input" placeholder="Email Address" required>
+            </div>
+            <div class="input-group">
+              <input type="text" class="form-input" placeholder="Hostel Name" required>
+            </div>
           </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
-            <span>How do I order from The 7AM Café?</span>
-            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          
+          <div class="input-row">
+            <div class="input-group">
+              <select class="form-select" required>
+                <option value="">Attendance Certainty</option>
+                <option value="definitely">Definitely</option>
+                <option value="likely">Likely</option>
+                <option value="maybe">Maybe</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <select class="form-select" required>
+                <option value="">Team Support</option>
+                <option value="g-team">Under G Team</option>
+                <option value="adenike-team">Adenike Team</option>
+                <option value="both">Both</option>
+                <option value="neutral">Neutral</option>
+              </select>
+            </div>
           </div>
-          <div class="faq-answer">
-            <p>You can pre-order via our upcoming mobile app or website for quick and convenient pickup. Details on our official launch and ordering platforms will be shared very soon!</p>
+          
+          <div class="checkbox-group">
+            <input type="checkbox" id="audience-newsletter" class="uber-checkbox">
+            <label for="audience-newsletter" class="checkbox-label">Subscribe to Newsletter</label>
           </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
-            <span>Do you offer delivery service?</span>
-            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          
+          <button type="submit" class="btn-accent w-full text-lg py-3 mt-6">
+            Register as Audience
+          </button>
+          <div id="audience-success" class="success-message">
+            ✨ Audience registration successful! We'll keep you updated with event details.
           </div>
-          <div class="faq-answer">
-            <p>Initially, we are focusing on providing an exceptional in-store pre-order and pickup experience. Delivery options will be thoroughly explored and potentially introduced in a later phase of our service.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
-            <span>What kind of food and beverages do you offer?</span>
-            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-          </div>
-          <div class="faq-answer">
-            <p>Our menu proudly features a selection of gourmet sandwiches crafted with fresh, high-quality ingredients, artisan iced coffees, and a variety of complementary morning sides. We also have special student-friendly breakfast deals.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
-            <span>What are the benefits of joining the waitlist?</span>
-            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-          </div>
-          <div class="faq-answer">
-            <p>Joining our waitlist grants you exclusive early access to grand opening promotions, sneak peeks of our full menu, and priority invitations to future special events and tastings. Be among the first to experience The 7AM Café!</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
-            <span>How are you partnered with Foobr?</span>
-            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-          </div>
-          <div class="faq-answer">
-            <p>Foobr is our esteemed strategic partner for our exciting "Breakfast Club Match" event. They are instrumental in helping us kick off our launch with a dynamic and engaging community event.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
-            <span>What will be your operating hours?</span>
-            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-          </div>
-          <div class="faq-answer">
-            <p>The 7AM Café is specifically designed to open early to cater to your morning fuel needs. Our precise operating hours will be officially announced closer to our grand opening date, so stay tuned!</p>
-          </div>
+        </form>
+        
+        <div class="footer-text">
+          "The Bowl Series: Hosted by Foobrng"
         </div>
       </div>
     </div>
   </section>
 
-  <footer class="bg-dark text-light py-12 fade-in-up">
-    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-      <div>
-        <h3 class="text-2xl font-extrabold mb-4 text-accent">7AM Café</h3>
-        <p class="text-medium-gray leading-relaxed text-sm">Fueling your mornings, one delicious bite and sip at a time. Fast, easy, and undeniably delicious.</p>
-      </div>
-      <div>
-        <h4 class="font-semibold text-xl mb-4 text-light">Quick Links</h4>
-        <ul class="space-y-2 text-medium-gray text-sm">
-          <li><a href="#hero" class="hover:text-accent transition-colors">Home</a></li>
-          <li><a href="#hero" class="hover:text-accent transition-colors">Register</a></li>
-          <li><a href="#offerings" class="hover:text-accent transition-colors">Menu</a></li>
-          <li><a href="#faq" class="hover:text-accent transition-colors">FAQ</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-xl mb-4 text-light">Connect With Us</h4>
-        <div class="flex justify-center md:justify-start space-x-6 mb-4">
-          <a href="#" class="text-medium-gray hover:text-accent transition-colors">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22H12c5.523 0 10-4.477 10-10z" clip-rule="evenodd" /></svg>
-          </a>
-          <a href="#" class="text-medium-gray hover:text-accent transition-colors">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.002 3.797.048.843.04 1.144.109 1.52.271a3.7 3.7 0 011.417.929c.65.65 1.117 1.417 1.27 1.52.162.377.23.679.271 1.52.047 1.012.048 1.372.048 3.797v.654c0 2.43-.002 2.784-.048 3.797-.04.843-.109 1.144-.271 1.52a3.7 3.7 0 01-.929 1.417c-.65.65-1.417 1.117-1.52 1.27-.377.162-.679.23-1.52.271-1.012.047-1.372.048-3.797.048h-.654c-2.43 0-2.784-.002-3.797-.048-.843-.04-1.144-.109-1.52-.271a3.7 3.7 0 01-1.417-.929c-.65-.65-1.117-1.417-1.27-1.52-.162-.377-.23-.679-.271-1.52-.047-1.012-.048-1.372-.048-3.797v-.654c0-2.43.002-2.784.048-3.797.04-.843.109-1.144.271-1.52a3.7 3.7 0 01.929-1.417c.65-.65 1.417-1.117 1.52-1.27.377-.162.679-.23.271-1.52C2.002 4.478 2 4.118 2 2h.654zm-.774 4.099a4.81 4.81 0 00-.007 1.706c0 2.443.001 2.686.059 3.826.044.869.193 1.46.466 1.965.485.897 1.157 1.517 2.072 1.936.505.275 1.096.425 1.965.466 1.14.058 1.383.06 3.826.059h.654c2.443 0 2.686-.001 3.826-.059.869-.044 1.46-.193 1.965-.466.897-.485 1.517-1.157 1.936-2.072.275-.505.425-1.096-.466-1.965C21.127 3.633 20.455 2.96 19.54 2.544c-.505-.275-1.096-.425-1.965-.466-1.14-.058-1.383-.06-3.826-.059h-.654c-2.443 0-2.686.001-3.826.059-.869.044-1.46.193-1.965.466C4.873 3.633 4.201 4.305 3.785 5.22c-.275.505-.425 1.096-.466 1.965-.058 1.14-.06 1.383-.059 3.826v.654z" /><path d="M12 4.885c-3.351 0-6.075 2.724-6.075 6.075S8.649 17.035 12 17.035s6.075-2.724 6.075-6.075S15.351 4.885 12 4.885zm0 10.05a3.975 3.975 0 110-7.95 3.975 3.975 0 010 7.95z" /><circle cx="18.02" cy="6.02" r="1.44" /></svg>
-          </a>
-          <a href="#" class="text-medium-gray hover:text-accent transition-colors">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 20.988c-.146-.353-.22-.728-.22-1.103V4.113C-.163 3.498.058 2.94.498 2.417 1.05 1.83 1.777 1.547 2.68 1.547h18.64c.903 0 1.63.283 2.182.87.44.523.66 1.082.66 1.7V19.885c0 .375-.074.75-.22 1.103-.146.353-.353.64-.62.862-.266.223-.55.335-.85.335H.677c-.3 0-.583-.112-.85-.335-.266-.222-.473-.509-.62-.862zm10.74-3.955V8.293h-1.63V17.03c0 .06.01.12.03.175.02.057.05.093.09.11.04.02.083.03.13.03h1.38c.05 0 .093-.01.13-.03.04-.017.07-.053.09-.11.02-.055.03-.115.03-.175zm-3.66-8.77c.414 0 .75-.336.75-.75S7.544 6.75 7.13 6.75s-.75.336-.75.75.336.75.75.75zm13.12 8.77V8.293h-1.63V17.03c0 .06.01.12.03.175.02.057.05.093.09.11.04.02.083.03.13.03h1.38c.05 0 .093-.01.13-.03.04-.017.07-.053.09-.11.02-.055.03-.115.03-.175zm-3.66-8.77c.414 0 .75-.336.75-.75S16.034 6.75 15.62 6.75s-.75.336-.75.75.336.75.75.75zm-3.66 8.77V8.293h-1.63V17.03c0 .06.01.12.03.175.02.057.05.093.09.11.04.02.083.03.13.03h1.38c.05 0 .093-.01.13-.03.04-.017.07-.053.09-.11.02-.055.03-.115.03-.175z" /></svg>
-          </a>
-        </div>
-        <p class="text-medium-gray text-sm">&copy; <span id="currentYear"></span> The 7AM Café. All rights reserved.</p>
-        <p class="text-medium-gray text-sm">Proudly partnered with Foobr.</p>
-      </div>
-    </div>
-  </footer>
+  <script>
+    // Tab switching functionality
+    function switchTab(tabName) {
+      // Hide all form contents
+      document.querySelectorAll('.form-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      
+      // Deactivate all tabs
+      document.querySelectorAll('.form-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // Activate selected tab and content
+      document.getElementById(tabName + '-form').classList.add('active');
+      document.querySelector(`.form-tab[onclick="switchTab('${tabName}')"]`).classList.add('active');
+    }
 
+    // Form submission handling (example)
+    document.getElementById('player-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('player-success').style.display = 'block';
+      this.reset();
+      setTimeout(() => {
+        document.getElementById('player-success').style.display = 'none';
+      }, 5000);
+    });
+
+    document.getElementById('audience-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('audience-success').style.display = 'block';
+      this.reset();
+      setTimeout(() => {
+        document.getElementById('audience-success').style.display = 'none';
+      }, 5000);
+    });
+
+    // Form validation feedback
+    document.querySelectorAll('.form-input, .form-select').forEach(input => {
+      input.addEventListener('invalid', function() {
+        this.style.borderColor = 'var(--color-accent)';
+      });
+      
+      input.addEventListener('input', function() {
+        if (this.checkValidity()) {
+          this.style.borderColor = 'var(--color-border-gray)';
+        }
+      });
+    });
+  </script>
 </body>
-
 </html>
