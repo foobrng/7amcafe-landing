@@ -4,35 +4,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The 7AM Cafe - Fuel Your Mornings, Feel the Game</title>
+  <title>The 7AM Cafe - Monochrome & Modern</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Playfair Display', 'serif']
-          },
-          colors: {
-            cream: '#FFFDF7', // Lighter, warmer cream
-            sunshine: '#FDE047', // Brighter, more vibrant yellow
-            banana: '#FACC15', // Original banana, good for accents
-            bananaDark: '#EAB308', // Darker banana for hover states
-            darkGray: '#1F2937', // For text, better contrast
-            lightGray: '#F9FAFB', // For subtle backgrounds
-          }
-        }
-      }
-    }
-  </script>
   <style>
-    /* Custom animation for fade-up */
+    /* Tailwind Config Overrides & Custom Styles for Monochrome */
+    :root {
+      --color-cream: #F8F8F8; /* Lighter, almost white */
+      --color-dark-gray: #1C1C1C; /* Near black */
+      --color-medium-gray: #4A4A4A;
+      --color-light-gray: #DEDEDE;
+      --color-accent: #FFD700; /* Subtle golden yellow for highlights - still monochrome friendly */
+      --color-accent-dark: #CCA000;
+    }
+
+    body {
+      background-color: var(--color-cream);
+      color: var(--color-dark-gray);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    /* Custom fade-up animation */
     .fade-up {
       opacity: 0;
       transform: translateY(40px);
-      transition: all 0.9s ease-out; /* Slightly slower and smoother */
+      transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); /* Smoother bezier curve */
     }
 
     .animate-fade-up {
@@ -40,55 +42,51 @@
       transform: translateY(0) !important;
     }
 
-    /* Keyframe for subtle bounce */
+    /* Subtle bounce for scroll indicator */
     @keyframes bounce-subtle {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
+      50% { transform: translateY(-8px); }
     }
-
     .animate-bounce-subtle {
-      animation: bounce-subtle 1.5s infinite;
+      animation: bounce-subtle 2s infinite;
     }
 
-    /* Custom radio button styling */
+    /* Custom radio and checkbox styling */
     input[type="radio"] {
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
       width: 1.25rem;
       height: 1.25rem;
-      border: 2px solid #FACC15; /* Border color for unselected */
+      border: 2px solid var(--color-medium-gray);
       border-radius: 50%;
       outline: none;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       justify-content: center;
       align-items: center;
       transition: all 0.2s ease-in-out;
     }
-
     input[type="radio"]:checked {
-      background-color: #FACC15; /* Fill color when selected */
-      border-color: #EAB308; /* Darker border when selected */
+      background-color: var(--color-dark-gray);
+      border-color: var(--color-dark-gray);
     }
-
     input[type="radio"]:checked::after {
       content: '';
       width: 0.5rem;
       height: 0.5rem;
       border-radius: 50%;
-      background-color: #FFF; /* Inner dot color */
+      background-color: var(--color-cream);
     }
 
-    /* Style for the waitlist checkbox */
     input[type="checkbox"] {
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
       width: 1.25rem;
       height: 1.25rem;
-      border: 2px solid #9CA3AF; /* Gray border */
-      border-radius: 0.25rem; /* Slightly rounded corners */
+      border: 2px solid var(--color-medium-gray);
+      border-radius: 0.25rem;
       outline: none;
       cursor: pointer;
       display: inline-block;
@@ -96,31 +94,65 @@
       position: relative;
       transition: all 0.2s ease-in-out;
     }
-
     input[type="checkbox"]:checked {
-      background-color: #FACC15; /* Yellow background when checked */
-      border-color: #EAB308; /* Darker yellow border */
+      background-color: var(--color-dark-gray);
+      border-color: var(--color-dark-gray);
     }
-
     input[type="checkbox"]:checked::after {
-      content: '✔'; /* Checkmark symbol */
+      content: '✔';
       font-size: 0.9rem;
-      color: white;
+      color: var(--color-cream);
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
 
-    /* Focus styles for inputs */
+    /* Input focus styles */
     input[type="text"]:focus,
     input[type="email"]:focus,
     input[type="tel"]:focus {
-      border-color: #FACC15; /* Yellow border on focus */
-      box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.2); /* Light yellow shadow on focus */
+      border-color: var(--color-dark-gray);
+      box-shadow: 0 0 0 3px rgba(74, 74, 74, 0.2); /* Subtle gray shadow */
       outline: none;
     }
 
+    /* General Button Styling for Monochrome */
+    .btn-primary {
+      background-color: var(--color-dark-gray);
+      color: var(--color-cream);
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      border-radius: 9999px; /* Pill shape */
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .btn-primary:hover {
+      background-color: var(--color-medium-gray);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+    /* Accent button */
+    .btn-accent {
+      background-color: var(--color-accent);
+      color: var(--color-dark-gray);
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      border-radius: 9999px; /* Pill shape */
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .btn-accent:hover {
+      background-color: var(--color-accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Image desaturation for monochrome */
+    .grayscale-image {
+        filter: grayscale(100%) contrast(110%);
+        mix-blend-mode: luminosity; /* Optional: can enhance monochrome look */
+    }
   </style>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -128,170 +160,168 @@
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-fade-up');
-            // Stop observing once animated if it's a one-time animation
-            // observer.unobserve(entry.target);
+            // observer.unobserve(entry.target); // Uncomment to animate only once
           } else {
-            // Optional: reset opacity if elements should fade out when scrolled away
+            // Optional: Remove class to re-animate on scroll back
             // entry.target.classList.remove('animate-fade-up');
           }
         });
       }, {
         threshold: 0.15
-      }); // Increased threshold for better visibility
+      });
 
       document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     });
   </script>
 </head>
 
-<body class="bg-cream text-darkGray font-sans leading-relaxed">
+<body>
 
-  <section class="relative h-screen bg-cover bg-center flex flex-col justify-center items-center text-white p-4" style="background-image: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1920&q=80');">
-    <div class="bg-gradient-to-t from-black/60 to-transparent absolute inset-0 z-0"></div>
+  <section class="relative h-screen flex flex-col justify-center items-center text-white p-4 overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1534063854999-55615d058c70?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&h=1080&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center;">
+    <div class="absolute inset-0 bg-black/60 z-0"></div>
     <div class="relative z-10 text-center max-w-4xl mx-auto">
-      <h1 class="text-6xl md:text-8xl font-display font-bold mb-4 drop-shadow-lg leading-tight">The 7AM Café</h1>
-      <p class="text-xl md:text-2xl text-white/90 mb-8 drop-shadow">Fuel Your Mornings. Feel the Game. Your day starts here.</p>
-      <a href="#registration-form" class="inline-block bg-sunshine hover:bg-bananaDark text-darkGray font-bold py-4 px-10 rounded-full text-lg shadow-lg transform transition duration-300 hover:scale-105">
+      <h1 class="text-7xl md:text-9xl font-display leading-none mb-6 drop-shadow-md">The 7AM Café</h1>
+      <p class="text-xl md:text-2xl text-white/90 mb-10 drop-shadow">Fuel your mornings. Elevate your game.</p>
+      <a href="#registration-form" class="btn-primary text-white bg-darkGray border-2 border-darkGray hover:bg-mediumGray hover:border-mediumGray text-xl">
         Join the Breakfast Club Match!
       </a>
     </div>
     <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-      <svg class="w-8 h-8 text-white animate-bounce-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <svg class="w-9 h-9 text-white animate-bounce-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
       </svg>
     </div>
   </section>
 
-  <section class="py-16 bg-lightGray fade-up">
+  <section class="py-20 bg-cream fade-up">
     <div class="max-w-3xl mx-auto text-center px-4">
-      <h2 class="text-4xl font-display font-bold mb-6 text-darkGray">The Breakfast Club Match: A Delicious Kick-off!</h2>
-      <p class="text-lg text-gray-700 leading-relaxed">
-        We’re thrilled to announce our partnership with <strong class="text-sunshine">Foobr</strong> to bring you an epic match day experience! Whether you're lacing up your boots to play or cheering from the sidelines, we've got your morning fuel covered. Sign up now and secure your spot on our exclusive café waitlist before our grand launch!
+      <h2 class="text-5xl font-display mb-8 text-darkGray">The Breakfast Club Match</h2>
+      <p class="text-lg text-medium-gray leading-relaxed">
+        We've teamed up with <strong class="text-darkGray">Foobr</strong> for an unforgettable match day. Whether you're playing or cheering, secure your spot now and join our exclusive café waitlist before we launch.
       </p>
     </div>
   </section>
 
-  <section id="registration-form" class="relative bg-cover bg-center py-20 mb-24 fade-up" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80');">
-    <div class="bg-black/50 absolute inset-0 z-0"></div>
-    <div class="relative z-10 bg-white max-w-lg mx-auto p-8 md:p-12 rounded-2xl shadow-2xl transform transition duration-300 hover:scale-[1.01]">
-      <h3 class="text-3xl font-display font-bold text-center mb-8 text-darkGray">Join the Action!</h3>
+  <section id="registration-form" class="relative py-20 mb-24 fade-up bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1549489679-5095393d9a0d?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&h=1080&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+    <div class="absolute inset-0 bg-black/50 z-0"></div>
+    <div class="relative z-10 bg-cream max-w-lg mx-auto p-8 md:p-12 rounded-2xl shadow-xl border border-light-gray transform transition duration-300 hover:scale-[1.01]">
+      <h3 class="text-3xl font-display text-center mb-8 text-darkGray">Join the Action!</h3>
       <form class="space-y-6">
         <div>
           <label for="fullName" class="sr-only">Full Name</label>
-          <input type="text" id="fullName" name="name" placeholder="Full Name" required class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sunshine focus:border-transparent transition-all duration-200">
+          <input type="text" id="fullName" name="name" placeholder="Full Name" required class="w-full p-4 border border-light-gray rounded-lg">
         </div>
         <div>
           <label for="emailAddress" class="sr-only">Email Address</label>
-          <input type="email" id="emailAddress" name="email" placeholder="Email Address" required class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sunshine focus:border-transparent transition-all duration-200">
+          <input type="email" id="emailAddress" name="email" placeholder="Email Address" required class="w-full p-4 border border-light-gray rounded-lg">
         </div>
         <div>
           <label for="phoneNumber" class="sr-only">Phone Number</label>
-          <input type="tel" id="phoneNumber" name="phone" placeholder="Phone Number (Optional)" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sunshine focus:border-transparent transition-all duration-200">
+          <input type="tel" id="phoneNumber" name="phone" placeholder="Phone Number (Optional)" class="w-full p-4 border border-light-gray rounded-lg">
         </div>
 
         <div class="space-y-4">
           <p class="font-semibold text-darkGray">How will you be joining?</p>
           <div class="flex flex-wrap gap-6">
-            <label class="flex items-center space-x-3 cursor-pointer text-lg text-gray-700">
+            <label class="flex items-center space-x-3 cursor-pointer text-lg text-medium-gray">
               <input type="radio" name="role" value="player" required>
               <span>Player</span>
             </label>
-            <label class="flex items-center space-x-3 cursor-pointer text-lg text-gray-700">
+            <label class="flex items-center space-x-3 cursor-pointer text-lg text-medium-gray">
               <input type="radio" name="role" value="audience">
               <span>Audience</span>
             </label>
           </div>
         </div>
 
-        <label class="flex items-start space-x-3 text-base cursor-pointer text-gray-700 mt-6">
+        <label class="flex items-start space-x-3 text-base cursor-pointer text-medium-gray mt-6">
           <input type="checkbox" name="waitlist" class="mt-1">
           <span>Yes, also sign me up for the exclusive waitlist for The 7AM Café's official launch!</span>
         </label>
 
-        <button type="submit" class="bg-banana hover:bg-bananaDark text-white font-bold py-4 px-6 rounded-lg w-full text-xl shadow-md transform transition duration-300 hover:scale-105 mt-8">
+        <button type="submit" class="btn-primary w-full text-xl py-4 rounded-lg">
           Register & Get Ready!
         </button>
       </form>
     </div>
   </section>
 
-  <section class="max-w-5xl mx-auto text-center px-4 py-16 mb-20 fade-up">
-    <h2 class="text-4xl md:text-5xl font-display font-bold mb-10 text-darkGray">Your New Morning Ritual Starts Here</h2>
+  <section class="max-w-5xl mx-auto text-center px-4 py-20 mb-20 fade-up">
+    <h2 class="text-5xl font-display mb-12 text-darkGray">Your Daily Fuel. Redefined.</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div>
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1000&q=80" alt="Inviting Cafe Interior with natural light" class="rounded-2xl shadow-xl w-full object-cover h-72 md:h-96 transform transition duration-300 hover:scale-[1.02]">
+        <img src="https://images.unsplash.com/photo-1541167710976-f36f6d6ee4f8?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Minimalist coffee cup with steam" class="rounded-2xl shadow-xl w-full object-cover h-72 md:h-96 grayscale-image transform transition duration-300 hover:scale-[1.02]">
       </div>
       <div class="text-left">
-        <p class="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-          The **7AM Café** isn't just another coffee shop; it's your new go-to destination for a vibrant start to your day. We're a dynamic breakfast and sandwich spot designed for the modern pace of life.
+        <p class="text-lg md:text-xl text-medium-gray leading-relaxed mb-6">
+          The **7AM Café** is your new go-to for a vibrant start. We're a dynamic spot designed for the modern pace of life.
         </p>
-        <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
-          Powered by flavor, speed, and a fresh Gen Z twist, we serve up freshly crafted gourmet sandwiches, rich artisan coffee, and delightful morning sides – all made for you to grab and go. **Fast. Easy. Delicious.**
+        <p class="text-lg md:text-xl text-medium-gray leading-relaxed">
+          Serving freshly crafted sandwiches, artisan coffee, and morning sides – all made for you to grab and go. **Fast. Easy. Delicious.**
         </p>
       </div>
     </div>
   </section>
 
-  <section class="py-16 bg-cream fade-up">
+  <section class="py-16 bg-light-gray fade-up">
     <div class="max-w-6xl mx-auto px-4 text-center">
-      <h2 class="text-4xl font-display font-bold mb-12 text-darkGray">Why Choose The 7AM Café?</h2>
+      <h2 class="text-5xl font-display mb-12 text-darkGray">Why Choose Us?</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-          <svg class="w-16 h-16 text-sunshine mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-          <h3 class="font-semibold text-2xl mb-3 text-darkGray">Fresh & Fast</h3>
-          <p class="text-gray-600">Deliciously prepared food and coffee, served quickly so you can seize your day.</p>
+        <div class="bg-cream p-8 rounded-xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <svg class="w-16 h-16 text-darkGray mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          <h3 class="font-semibold text-2xl mb-3 text-darkGray">Efficiency Meets Flavor</h3>
+          <p class="text-medium-gray">Deliciously prepared food and coffee, served quickly so you can seize your day.</p>
         </div>
-        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-          <svg class="w-16 h-16 text-sunshine mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h-5m-5 0h10a2 2 0 002-2V9a2 2 0 00-2-2h-2M5 20v-5a2 2 0 012-2h2.4a2 2 0 012 2v5m0 0h-5m5 0h-5m5 0a2 2 0 01-2-2V9a2 2 0 00-2-2h-2V5a2 2 0 00-2-2H9a2 2 0 00-2 2v2H5a2 2 0 00-2 2v8a2 2 0 002 2h10a2 2 0 002-2v-2"></path></svg>
-          <h3 class="font-semibold text-2xl mb-3 text-darkGray">Community Hub</h3>
-          <p class="text-gray-600">More than a café, it's a place to connect, collaborate, and fuel your passions.</p>
+        <div class="bg-cream p-8 rounded-xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <svg class="w-16 h-16 text-darkGray mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h-5m-5 0h10a2 2 0 002-2V9a2 2 0 00-2-2h-2M5 20v-5a2 2 0 012-2h2.4a2 2 0 012 2v5m0 0h-5m5 0h-5m5 0a2 2 0 01-2-2V9a2 2 0 00-2-2h-2V5a2 2 0 00-2-2H9a2 2 0 00-2 2v2H5a2 2 0 00-2 2v8a2 2 0 002 2h10a2 2 0 002-2v-2"></path></svg>
+          <h3 class="font-semibold text-2xl mb-3 text-darkGray">Modern Community Hub</h3>
+          <p class="text-medium-gray">More than a café, it's a place to connect, collaborate, and fuel your passions.</p>
         </div>
-        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-          <svg class="w-16 h-16 text-sunshine mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V3m0 9v3m0-10.99A7.495 7.495 0 0110 21H7a2 2 0 01-2-2V5a2 2 0 012-2h5c.507 0 .98.173 1.334.456M12 12h-2.585M16 12H12"></path></svg>
-          <h3 class="font-semibold text-2xl mb-3 text-darkGray">Student Friendly</h3>
-          <p class="text-gray-600">Great food at great prices, perfect for fueling up between classes or study sessions.</p>
+        <div class="bg-cream p-8 rounded-xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+          <svg class="w-16 h-16 text-darkGray mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V3m0 9v3m0-10.99A7.495 7.495 0 0110 21H7a2 2 0 01-2-2V5a2 2 0 012-2h5c.507 0 .98.173 1.334.456M12 12h-2.585M16 12H12"></path></svg>
+          <h3 class="font-semibold text-2xl mb-3 text-darkGray">Smart Value</h3>
+          <p class="text-medium-gray">Great food at great prices, perfect for fueling up between classes or study sessions.</p>
         </div>
       </div>
     </div>
   </section>
-
 
   <section class="max-w-6xl mx-auto px-4 py-20 mb-24 fade-up">
-    <h2 class="text-4xl md:text-5xl font-display font-bold text-center mb-16 text-darkGray">Explore Our Delicious Offerings</h2>
+    <h2 class="text-5xl font-display text-center mb-16 text-darkGray">Curated Selections</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
-        <img src="https://images.unsplash.com/photo-1603398938378-27d7b70cbe95?auto=format&fit=crop&w=600&q=80" alt="Gourmet Sandwich" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md transform transition duration-300 hover:scale-105">
+      <div class="bg-cream p-6 rounded-2xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1549489679-5095393d9a0d?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gourmet Sandwich" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md grayscale-image transform transition duration-300 hover:scale-105">
         <h3 class="font-semibold text-2xl mb-3 text-darkGray">Signature Sandwiches</h3>
-        <p class="text-base text-gray-700">Crafted with love, layered with fresh, premium ingredients. Our morning sandwiches will keep you energized and satisfied.</p>
+        <p class="text-base text-medium-gray">Crafted with fresh, premium ingredients. Energize your morning.</p>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
-        <img src="https://images.unsplash.com/photo-1612197583505-dc5b246ed74d?auto=format&fit=crop&w=600&q=80" alt="Perfect Iced Coffee" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md transform transition duration-300 hover:scale-105">
+      <div class="bg-cream p-6 rounded-2xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Perfect Iced Coffee" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md grayscale-image transform transition duration-300 hover:scale-105">
         <h3 class="font-semibold text-2xl mb-3 text-darkGray">Artisan Iced Coffee</h3>
-        <p class="text-base text-gray-700">Chilled to perfection, smooth, and incredibly energizing. The perfect wake-up call or afternoon boost for any day.</p>
+        <p class="text-base text-medium-gray">Chilled perfection. The ideal wake-up call or afternoon pick-me-up.</p>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
-        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Wholesome Breakfast" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md transform transition duration-300 hover:scale-105">
-        <h3 class="font-semibold text-2xl mb-3 text-darkGray">Unbeatable Breakfast Deals</h3>
-        <p class="text-base text-gray-700">Smartly bundled combos at student-friendly prices. Eat well, save more, and never compromise on taste.</p>
+      <div class="bg-cream p-6 rounded-2xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1507041951235-9b2f69e6b45f?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wholesome Breakfast" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md grayscale-image transform transition duration-300 hover:scale-105">
+        <h3 class="font-semibold text-2xl mb-3 text-darkGray">Smart Value Combos</h3>
+        <p class="text-base text-medium-gray">Bundled combos at student-friendly prices. Eat well, spend less.</p>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
-        <img src="https://images.unsplash.com/photo-1610116306796-5cabd8d3b69d?auto=format&fit=crop&w=600&q=80" alt="Quick Pickup Service" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md transform transition duration-300 hover:scale-105">
-        <h3 class="font-semibold text-2xl mb-3 text-darkGray">Seamless Pre-Order & Pickup</h3>
-        <p class="text-base text-gray-700">Short on time? Order ahead via our app or website, skip the queue, and grab your breakfast on the go.</p>
+      <div class="bg-cream p-6 rounded-2xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1620921473215-d918341b52b2?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Quick Pickup Service" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md grayscale-image transform transition duration-300 hover:scale-105">
+        <h3 class="font-semibold text-2xl mb-3 text-darkGray">Seamless Pre-Order</h3>
+        <p class="text-base text-medium-gray">Skip the queue. Order ahead and grab your breakfast on the go.</p>
       </div>
     </div>
   </section>
 
-  <section class="py-16 bg-sunshine/20 fade-up">
+  <section class="py-20 bg-light-gray fade-up">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-4xl font-display font-bold mb-12 text-darkGray">What Our Early Birds Say</h2>
+      <h2 class="text-5xl font-display mb-12 text-darkGray">Voices of Our Community</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white p-8 rounded-xl shadow-lg border border-sunshine/50 transform transition duration-300 hover:scale-[1.02]">
-          <p class="italic text-lg text-gray-700 mb-4">"The sandwiches are incredible, and the coffee gets me through my morning lectures. Absolutely love the vibe!"</p>
+        <div class="bg-cream p-8 rounded-xl shadow-lg border border-medium-gray/30 transform transition duration-300 hover:scale-[1.02]">
+          <p class="italic text-lg text-medium-gray mb-4">"The sandwiches are incredibly fresh, and the coffee fuels my morning. The clean design of the cafe itself is a bonus!"</p>
           <p class="font-semibold text-darkGray">- Alex P., University Student</p>
         </div>
-        <div class="bg-white p-8 rounded-xl shadow-lg border border-sunshine/50 transform transition duration-300 hover:scale-[1.02]">
-          <p class="italic text-lg text-gray-700 mb-4">"Finally, a place that understands quick, quality breakfast. The pre-order is a game-changer for my busy schedule."</p>
+        <div class="bg-cream p-8 rounded-xl shadow-lg border border-medium-gray/30 transform transition duration-300 hover:scale-[1.02]">
+          <p class="italic text-lg text-medium-gray mb-4">"Finally, a place that values both speed and quality. The pre-order system is a lifesaver for my busy schedule."</p>
           <p class="font-semibold text-darkGray">- Sam W., Young Professional</p>
         </div>
       </div>
@@ -300,13 +330,13 @@
 
   <section class="py-20 bg-cream fade-up">
     <div class="max-w-2xl mx-auto text-center px-4">
-      <h2 class="text-4xl font-display font-bold mb-6 text-darkGray">Stay in the Loop!</h2>
-      <p class="text-lg text-gray-700 mb-8">
+      <h2 class="text-4xl font-display mb-6 text-darkGray">Stay Connected.</h2>
+      <p class="text-lg text-medium-gray mb-8">
         Get exclusive offers, menu updates, and news straight to your inbox. Don't miss out on what's brewing at The 7AM Café!
       </p>
       <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-        <input type="email" placeholder="Your Email Address" class="flex-grow p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sunshine focus:border-transparent transition-all duration-200">
-        <button type="submit" class="bg-banana hover:bg-bananaDark text-white font-bold py-4 px-8 rounded-lg shadow-md transform transition duration-300 hover:scale-105">
+        <input type="email" placeholder="Your Email Address" class="flex-grow p-4 border border-light-gray rounded-lg focus:ring-2 focus:ring-darkGray">
+        <button type="submit" class="btn-primary py-4 px-8 rounded-lg">
           Subscribe
         </button>
       </form>
@@ -316,29 +346,29 @@
   <footer class="bg-darkGray text-white py-12">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
       <div>
-        <h3 class="text-2xl font-display font-bold mb-4 text-sunshine">The 7AM Café</h3>
+        <h3 class="text-2xl font-display mb-4 text-accent">The 7AM Café</h3>
         <p class="text-gray-400 leading-relaxed">Fueling your mornings, one delicious bite and sip at a time. Fast, easy, and undeniably delicious.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-xl mb-4">Quick Links</h4>
+        <h4 class="font-semibold text-xl mb-4 text-cream">Quick Links</h4>
         <ul class="space-y-2 text-gray-400">
-          <li><a href="#" class="hover:text-sunshine transition-colors">Home</a></li>
-          <li><a href="#registration-form" class="hover:text-sunshine transition-colors">Register for Match</a></li>
-          <li><a href="#" class="hover:text-sunshine transition-colors">Our Menu</a></li>
-          <li><a href="#" class="hover:text-sunshine transition-colors">About Us</a></li>
-          <li><a href="#" class="hover:text-sunshine transition-colors">Contact</a></li>
+          <li><a href="#" class="hover:text-accent transition-colors">Home</a></li>
+          <li><a href="#registration-form" class="hover:text-accent transition-colors">Register for Match</a></li>
+          <li><a href="#" class="hover:text-accent transition-colors">Our Menu</a></li>
+          <li><a href="#" class="hover:text-accent transition-colors">About Us</a></li>
+          <li><a href="#" class="hover:text-accent transition-colors">Contact</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-semibold text-xl mb-4">Connect With Us</h4>
+        <h4 class="font-semibold text-xl mb-4 text-cream">Connect With Us</h4>
         <div class="flex justify-center md:justify-start space-x-6 mb-4">
-          <a href="#" class="text-gray-400 hover:text-sunshine transition-colors">
+          <a href="#" class="text-gray-400 hover:text-accent transition-colors">
             <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22H12c5.523 0 10-4.477 10-10z" clip-rule="evenodd" /></svg>
           </a>
-          <a href="#" class="text-gray-400 hover:text-sunshine transition-colors">
+          <a href="#" class="text-gray-400 hover:text-accent transition-colors">
             <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.002 3.797.048.843.04 1.144.109 1.52.271a3.7 3.7 0 011.417.929c.65.65 1.117 1.417 1.27 1.52.162.377.23.679.271 1.52.047 1.012.048 1.372.048 3.797v.654c0 2.43-.002 2.784-.048 3.797-.04.843-.109 1.144-.271 1.52a3.7 3.7 0 01-.929 1.417c-.65.65-1.417 1.117-1.52 1.27-.377.162-.679.23-1.52.271-1.012.047-1.372.048-3.797.048h-.654c-2.43 0-2.784-.002-3.797-.048-.843-.04-1.144-.109-1.52-.271a3.7 3.7 0 01-1.417-.929c-.65-.65-1.117-1.417-1.27-1.52-.162-.377-.23-.679-.271-1.52-.047-1.012-.048-1.372-.048-3.797v-.654c0-2.43.002-2.784.048-3.797.04-.843.109-1.144.271-1.52a3.7 3.7 0 01.929-1.417c.65-.65 1.417-1.117 1.52-1.27.377-.162.679-.23.271-1.52C2.002 4.478 2 4.118 2 2h.654zm-.774 4.099a4.81 4.81 0 00-.007 1.706c0 2.443.001 2.686.059 3.826.044.869.193 1.46.466 1.965.485.897 1.157 1.517 2.072 1.936.505.275 1.096.425 1.965.466 1.14.058 1.383.06 3.826.059h.654c2.443 0 2.686-.001 3.826-.059.869-.044 1.46-.193 1.965-.466.897-.485 1.517-1.157 1.936-2.072.275-.505.425-1.096.466-1.965.058-1.14.06-1.383.059-3.826v-.654c0-2.443.001-2.686-.059-3.826-.044-.869-.193-1.46-.466-1.965C21.127 3.633 20.455 2.96 19.54 2.544c-.505-.275-1.096-.425-1.965-.466-1.14-.058-1.383-.06-3.826-.059h-.654c-2.443 0-2.686.001-3.826.059-.869.044-1.46.193-1.965.466C4.873 3.633 4.201 4.305 3.785 5.22c-.275.505-.425 1.096-.466 1.965-.058 1.14-.06 1.383-.059 3.826v.654z" /><path d="M12 4.885c-3.351 0-6.075 2.724-6.075 6.075S8.649 17.035 12 17.035s6.075-2.724 6.075-6.075S15.351 4.885 12 4.885zm0 10.05a3.975 3.975 0 110-7.95 3.975 3.975 0 010 7.95z" /><circle cx="18.02" cy="6.02" r="1.44" /></svg>
           </a>
-          <a href="#" class="text-gray-400 hover:text-sunshine transition-colors">
+          <a href="#" class="text-gray-400 hover:text-accent transition-colors">
             <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 20.988c-.146-.353-.22-.728-.22-1.103V4.113C-.163 3.498.058 2.94.498 2.417 1.05 1.83 1.777 1.547 2.68 1.547h18.64c.903 0 1.63.283 2.182.87.44.523.66 1.082.66 1.7V19.885c0 .375-.074.75-.22 1.103-.146.353-.353.64-.62.862-.266.223-.55.335-.85.335H.677c-.3 0-.583-.112-.85-.335-.266-.222-.473-.509-.62-.862zm10.74-3.955V8.293h-1.63V17.03c0 .06.01.12.03.175.02.057.05.093.09.11.04.02.083.03.13.03h1.38c.05 0 .093-.01.13-.03.04-.017.07-.053.09-.11.02-.055.03-.115.03-.175zm-3.66-8.77c.414 0 .75-.336.75-.75S7.544 6.75 7.13 6.75s-.75.336-.75.75.336.75.75.75zm13.12 8.77V8.293h-1.63V17.03c0 .06.01.12.03.175.02.057.05.093.09.11.04.02.083.03.13.03h1.38c.05 0 .093-.01.13-.03.04-.017.07-.053.09-.11.02-.055.03-.115.03-.175zm-3.66-8.77c.414 0 .75-.336.75-.75S16.034 6.75 15.62 6.75s-.75.336-.75.75.336.75.75.75zm-3.66 8.77V8.293h-1.63V17.03c0 .06.01.12.03.175.02.057.05.093.09.11.04.02.083.03.13.03h1.38c.05 0 .093-.01.13-.03.04-.017.07-.053.09-.11.02-.055.03-.115.03-.175z" /></svg>
           </a>
         </div>
