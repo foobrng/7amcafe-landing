@@ -1,19 +1,42 @@
+Okay, this is an excellent reference\! Chowdeck's design is very sharp, modern, and engaging, even with its primary use of green. We can definitely draw inspiration from these specific sections while adhering to our "simple, modern, monochrome, and interesting" brief.
+
+Here's how we'll adapt the Navbar, Hero, "Join our growing network" (which we can adapt to "Partner with Us" or "Be Part of Our Story"), and the FAQ section to fit the 7AM Cafe's refined monochrome aesthetic:
+
+-----
+
+### Key Adaptations for Chowdeck's Style into Monochrome
+
+1.  **Monochrome Focus:** Instead of Chowdeck's vibrant green and orange, we'll use our established `darkGray`, `cream`, `lightGray`, and `mediumGray`. The `accent` color (subtle gold) will be used very sparingly, similar to how Chowdeck uses its secondary accent colors.
+2.  **Typography Dominance:** We'll lean even more on `Playfair Display` for impactful headings and `Inter` for clean body text, using size, weight, and spacing to create visual interest.
+3.  **Structured Layouts:** Chowdeck uses clean grids and well-defined sections. We'll apply this to our "Partner" cards and FAQ layout.
+4.  **Subtle Background Details:** Chowdeck uses subtle geometric patterns or illustrations at the bottom of their cards. For our monochrome, we'll achieve this with very light gray background shapes or subtle textural patterns (simulated with CSS gradients or background images in grayscale).
+5.  **Clean Interactions:** Hover effects will be subtle (shadows, slight transforms) rather than overt color changes.
+6.  **Iconography:** We'll use simple, line-based SVG icons in `darkGray` or `mediumGray` to maintain the minimalist feel.
+
+-----
+
+## Updated HTML and CSS for Navbar, Hero, "Join Our Network", and FAQ
+
+I've gone through the entire HTML structure to implement these changes. I've also removed the previous "The Breakfast Club Match Intro" and "Why Choose Us" sections to avoid redundancy and streamline the content flow, as the new "Be Part of Our Story" section will serve a similar purpose.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The 7AM Cafe - Monochrome & Modern</title>
+  <title>The 7AM Cafe - Fuel Your Mornings, Redefined</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     /* Tailwind Config Overrides & Custom Styles for Monochrome */
     :root {
-      --color-cream: #F8F8F8; /* Lighter, almost white */
-      --color-dark-gray: #1C1C1C; /* Near black */
+      --color-cream: #FBFBFB; /* Lighter, almost white */
+      --color-dark-gray: #1A1A1A; /* Near black */
       --color-medium-gray: #4A4A4A;
-      --color-light-gray: #DEDEDE;
+      --color-light-gray: #E8E8E8; /* Slightly darker light gray for background variations */
+      --color-border-gray: #D0D0D0; /* For subtle borders */
       --color-accent: #FFD700; /* Subtle golden yellow for highlights - still monochrome friendly */
       --color-accent-dark: #CCA000;
     }
@@ -23,6 +46,7 @@
       color: var(--color-dark-gray);
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
 
     h1, h2, h3, h4 {
@@ -132,13 +156,14 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     }
-    /* Accent button */
+
+    /* Accent button (used sparingly for contrast) */
     .btn-accent {
-      background-color: var(--color-accent);
+      background-color: var(--color-accent); /* A subtle gold */
       color: var(--color-dark-gray);
       font-weight: 600;
       padding: 1rem 2.5rem;
-      border-radius: 9999px; /* Pill shape */
+      border-radius: 9999px;
       transition: all 0.3s ease-in-out;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
@@ -148,11 +173,79 @@
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     }
 
+
     /* Image desaturation for monochrome */
     .grayscale-image {
-        filter: grayscale(100%) contrast(110%);
-        mix-blend-mode: luminosity; /* Optional: can enhance monochrome look */
+        filter: grayscale(100%) contrast(100%); /* Adjusted contrast */
+        /* mix-blend-mode: luminosity; /* Optional, can enhance monochrome look */
     }
+
+    /* FAQ item styling */
+    .faq-item {
+        background-color: var(--color-cream);
+        border: 1px solid var(--color-border-gray);
+        border-radius: 0.75rem;
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+    }
+    .faq-item:hover {
+        background-color: var(--color-light-gray);
+    }
+    .faq-item.active {
+        background-color: var(--color-dark-gray);
+        color: var(--color-cream);
+        border-color: var(--color-dark-gray);
+    }
+    .faq-item.active span { /* For the question text inside active item */
+        color: var(--color-cream);
+    }
+    .faq-item.active svg { /* For the icon inside active item */
+        color: var(--color-cream);
+    }
+    .faq-answer {
+        background-color: var(--color-dark-gray); /* Dark background for active answer */
+        color: var(--color-cream);
+        border-radius: 0.75rem;
+        padding: 2rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Specific styles for the "Be Part of Our Story" cards to emulate Chowdeck's bottom pattern */
+    .card-pattern-1 {
+        background-image: radial-gradient(circle at bottom right, var(--color-light-gray) 10%, transparent 40%),
+                          radial-gradient(circle at bottom left, var(--color-light-gray) 10%, transparent 40%);
+        background-size: 80% 80%; /* Adjust size for more subtle effect */
+        background-repeat: no-repeat;
+        background-position: bottom left, bottom right;
+    }
+    .card-pattern-2 {
+        background-image: linear-gradient(to top, var(--color-light-gray) 15%, transparent 15%);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-position: bottom;
+    }
+    .card-pattern-3 {
+        background-image: linear-gradient(135deg, var(--color-light-gray) 25%, transparent 25%) 0 0,
+                          linear-gradient(-45deg, var(--color-light-gray) 25%, transparent 25%) 0 0;
+        background-size: 50px 50px; /* Smaller pattern */
+        background-repeat: repeat;
+    }
+
+
+    /* Mobile Nav Toggle */
+    #mobile-menu-button span {
+        display: block;
+        height: 3px;
+        width: 25px;
+        background: var(--color-dark-gray);
+        border-radius: 2px;
+        transition: all 0.3s ease-in-out;
+    }
+    #mobile-menu-button.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    #mobile-menu-button.open span:nth-child(2) { opacity: 0; }
+    #mobile-menu-button.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
   </style>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -171,17 +264,87 @@
       });
 
       document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+      // FAQ Accordion-like functionality (simplified for static HTML/CSS)
+      const faqItems = document.querySelectorAll('.faq-item');
+      const faqAnswerContainer = document.getElementById('faq-answer-display');
+      const answers = {
+        "what-is-cafe": `The 7AM Café is your new go-to destination for a vibrant start to your day. We're a dynamic breakfast and sandwich spot designed for the modern pace of life, focusing on efficiency and quality.`,
+        "how-to-order": `You can pre-order via our upcoming mobile app or website for quick pickup. Details on launch will be shared soon!`,
+        "delivery-service": `Initially, we are focusing on pre-order and pickup. Delivery options will be explored for a later phase of our launch.`,
+        "menu-options": `Our menu features gourmet sandwiches, artisan iced coffee, and a selection of morning sides. We also offer student-friendly breakfast deals.`,
+        "waitlist-benefits": `Joining the waitlist gives you early access to launch promotions, exclusive menu sneak peeks, and priority for future events.`,
+        "partner-foobr": `Foobr is our strategic partner for the "Breakfast Club Match" event, helping us kick off with an exciting community engagement.`,
+        "cafe-hours": `The 7AM Café is designed to open early to fuel your mornings. Specific hours will be announced closer to our official launch date.`,
+      };
+
+      // Set initial active state for the first FAQ item
+      if (faqItems.length > 0) {
+        faqItems[0].classList.add('active');
+        const initialQuestionId = faqItems[0].getAttribute('data-question-id');
+        faqAnswerContainer.innerHTML = `<p class="text-lg font-inter">${answers[initialQuestionId]}</p>`;
+      }
+
+      faqItems.forEach(item => {
+        item.addEventListener('click', () => {
+          // Remove active class from all items
+          faqItems.forEach(i => i.classList.remove('active'));
+
+          // Add active class to clicked item
+          item.classList.add('active');
+
+          // Display the corresponding answer
+          const questionId = item.getAttribute('data-question-id');
+          faqAnswerContainer.innerHTML = `<p class="text-lg font-inter">${answers[questionId]}</p>`;
+        });
+      });
+
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenuButton.classList.toggle('open');
+      });
     });
   </script>
 </head>
 
 <body>
 
-  <section class="relative h-screen flex flex-col justify-center items-center text-white p-4 overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1534063854999-55615d058c70?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&h=1080&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center;">
+  <nav class="fixed top-0 left-0 w-full bg-cream z-50 shadow-sm py-4">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+      <a href="#" class="text-3xl font-display font-bold text-darkGray">7AM</a>
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#hero" class="text-medium-gray hover:text-darkGray text-lg transition-colors">Home</a>
+        <a href="#about" class="text-medium-gray hover:text-darkGray text-lg transition-colors">About</a>
+        <a href="#offerings" class="text-medium-gray hover:text-darkGray text-lg transition-colors">Menu</a>
+        <a href="#story" class="text-medium-gray hover:text-darkGray text-lg transition-colors">Partner</a>
+        <a href="#faq" class="text-medium-gray hover:text-darkGray text-lg transition-colors">FAQ</a>
+        <a href="#registration-form" class="btn-primary text-base py-2 px-6">Register Now</a>
+      </div>
+      <button id="mobile-menu-button" class="md:hidden flex flex-col space-y-1">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-cream px-4 pt-2 pb-4 space-y-2">
+      <a href="#hero" class="block text-medium-gray hover:text-darkGray text-lg py-2">Home</a>
+      <a href="#about" class="block text-medium-gray hover:text-darkGray text-lg py-2">About</a>
+      <a href="#offerings" class="block text-medium-gray hover:text-darkGray text-lg py-2">Menu</a>
+      <a href="#story" class="block text-medium-gray hover:text-darkGray text-lg py-2">Partner</a>
+      <a href="#faq" class="block text-medium-gray hover:text-darkGray text-lg py-2">FAQ</a>
+      <a href="#registration-form" class="btn-primary text-base py-2 px-6 block w-full text-center mt-4">Register Now</a>
+    </div>
+  </nav>
+
+  <section id="hero" class="relative h-screen flex flex-col justify-center items-center text-white p-4 pt-20 overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1549489679-5095393d9a0d?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&h=1080&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center;">
     <div class="absolute inset-0 bg-black/60 z-0"></div>
-    <div class="relative z-10 text-center max-w-4xl mx-auto">
+    <div class="relative z-10 text-center max-w-4xl mx-auto fade-up">
       <h1 class="text-7xl md:text-9xl font-display leading-none mb-6 drop-shadow-md">The 7AM Café</h1>
-      <p class="text-xl md:text-2xl text-white/90 mb-10 drop-shadow">Fuel your mornings. Elevate your game.</p>
+      <p class="text-xl md:text-2xl text-white/90 mb-10 drop-shadow">Your morning ritual, redefined. Simple. Fast. Delicious.</p>
       <a href="#registration-form" class="btn-primary text-white bg-darkGray border-2 border-darkGray hover:bg-mediumGray hover:border-mediumGray text-xl">
         Join the Breakfast Club Match!
       </a>
@@ -193,31 +356,111 @@
     </div>
   </section>
 
-  <section class="py-20 bg-cream fade-up">
-    <div class="max-w-3xl mx-auto text-center px-4">
-      <h2 class="text-5xl font-display mb-8 text-darkGray">The Breakfast Club Match</h2>
-      <p class="text-lg text-medium-gray leading-relaxed">
-        We've teamed up with <strong class="text-darkGray">Foobr</strong> for an unforgettable match day. Whether you're playing or cheering, secure your spot now and join our exclusive café waitlist before we launch.
-      </p>
+  <section id="about" class="max-w-5xl mx-auto text-center px-4 py-20 mb-12 fade-up">
+    <h2 class="text-5xl font-display mb-12 text-darkGray">The 7AM Café: Your Daily Fuel. Redefined.</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <img src="https://images.unsplash.com/photo-1541167710976-f36f6d6ee4f8?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Minimalist coffee cup with steam" class="rounded-2xl shadow-xl w-full object-cover h-72 md:h-96 grayscale-image transform transition duration-300 hover:scale-[1.02]">
+      </div>
+      <div class="text-left">
+        <p class="text-lg md:text-xl text-medium-gray leading-relaxed mb-6">
+          More than just a coffee shop, **The 7AM Café** is your new go-to destination for a vibrant start to your day. We're a dynamic breakfast and sandwich spot designed for the modern pace of life, focusing on efficiency and quality.
+        </p>
+        <p class="text-lg md:text-xl text-medium-gray leading-relaxed">
+          We serve freshly crafted gourmet sandwiches, rich artisan coffee, and delightful morning sides – all made for you to grab and go. **Fast. Easy. Delicious.**
+        </p>
+      </div>
     </div>
   </section>
 
-  <section id="registration-form" class="relative py-20 mb-24 fade-up bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1549489679-5095393d9a0d?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&h=1080&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+  <section id="story" class="py-20 bg-light-gray fade-up">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-5xl font-display mb-12 text-darkGray">Be Part of Our Story</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-cream p-8 rounded-2xl shadow-lg border border-border-gray overflow-hidden relative group transform transition duration-300 hover:scale-[1.01]">
+          <div class="flex justify-center mb-6">
+            <svg class="w-16 h-16 text-darkGray" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10v11h18V10M17 10h-10M6 10h12v-5H6v5zm-3 0V7a3 3 0 013-3h12a3 3 0 013 3v3m-3 0v11"></path></svg>
+          </div>
+          <h3 class="font-semibold text-2xl mb-3 text-darkGray">Partner Your Restaurant</h3>
+          <p class="text-medium-gray text-base mb-6">Are you a restaurant owner looking to expand your reach? Join our network and connect with new customers.</p>
+          <a href="#" class="text-darkGray text-lg font-semibold group-hover:text-medium-gray transition-colors flex items-center justify-center">
+            Learn More
+            <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg>
+          </a>
+          <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-light-gray to-transparent z-[-1] rounded-b-2xl opacity-70"></div>
+        </div>
+
+        <div class="bg-cream p-8 rounded-2xl shadow-lg border border-border-gray overflow-hidden relative group transform transition duration-300 hover:scale-[1.01]">
+          <div class="flex justify-center mb-6">
+            <svg class="w-16 h-16 text-darkGray" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.25V3m0 3.25L10 9M12 6.25L14 9M4.062 10.25a2.5 2.5 0 01-1.5 2.25l-.94 1.88a1 1 0 00.5 1.37l1.5 1a1 1 0 01.5 1.37l-.94 1.88a2.5 2.5 0 01-1.5 2.25M19.938 10.25a2.5 2.5 0 001.5 2.25l.94 1.88a1 1 0 01-.5 1.37l-1.5 1a1 1 0 00-.5 1.37l.94 1.88a2.5 2.5 0 001.5 2.25M9.75 21v-3.75a2.25 2.25 0 00-2.25-2.25H4.5M14.25 21v-3.75a2.25 2.25 0 012.25-2.25h2.25M7.5 10.5V6a3 3 0 013-3h3a3 3 0 013 3v4.5"></path></svg>
+          </div>
+          <h3 class="font-semibold text-2xl mb-3 text-darkGray">Join Our Delivery Team</h3>
+          <p class="text-medium-gray text-base mb-6">Join our elite league of delivery riders, bringing happiness to customers and earning income.</p>
+          <a href="#" class="text-darkGray text-lg font-semibold group-hover:text-medium-gray transition-colors flex items-center justify-center">
+            Apply Now
+            <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg>
+          </a>
+          <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-light-gray to-transparent z-[-1] rounded-b-2xl opacity-70"></div>
+        </div>
+
+        <div class="bg-cream p-8 rounded-2xl shadow-lg border border-border-gray overflow-hidden relative group transform transition duration-300 hover:scale-[1.01]">
+          <div class="flex justify-center mb-6">
+            <svg class="w-16 h-16 text-darkGray" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 10V6.5M6 10V6.5M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 14h.01M16 12H8"></path></svg>
+          </div>
+          <h3 class="font-semibold text-2xl mb-3 text-darkGray">Work With Us</h3>
+          <p class="text-medium-gray text-base mb-6">Passionate about seamless service? Explore career opportunities and join our growing team behind the scenes.</p>
+          <a href="#" class="text-darkGray text-lg font-semibold group-hover:text-medium-gray transition-colors flex items-center justify-center">
+            See Openings
+            <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg>
+          </a>
+          <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-light-gray to-transparent z-[-1] rounded-b-2xl opacity-70"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="offerings" class="max-w-6xl mx-auto px-4 py-20 mb-24 fade-up">
+    <h2 class="text-5xl font-display text-center mb-16 text-darkGray">Curated Selections</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="bg-cream p-6 rounded-2xl shadow-lg border border-border-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1549489679-5095393d9a0d?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gourmet Sandwich" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md grayscale-image transform transition duration-300 hover:scale-105">
+        <h3 class="font-semibold text-2xl mb-3 text-darkGray">Signature Sandwiches</h3>
+        <p class="text-base text-medium-gray">Crafted with fresh, premium ingredients. Energize your morning.</p>
+      </div>
+      <div class="bg-cream p-6 rounded-2xl shadow-lg border border-border-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Perfect Iced Coffee" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md grayscale-image transform transition duration-300 hover:scale-105">
+        <h3 class="font-semibold text-2xl mb-3 text-darkGray">Artisan Iced Coffee</h3>
+        <p class="text-base text-medium-gray">Chilled perfection. The ideal wake-up call or afternoon pick-me-up.</p>
+      </div>
+      <div class="bg-cream p-6 rounded-2xl shadow-lg border border-border-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1507041951235-9b2f69e6b45f?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wholesome Breakfast" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md grayscale-image transform transition duration-300 hover:scale-105">
+        <h3 class="font-semibold text-2xl mb-3 text-darkGray">Smart Value Combos</h3>
+        <p class="text-base text-medium-gray">Bundled combos at student-friendly prices. Eat well, spend less.</p>
+      </div>
+      <div class="bg-cream p-6 rounded-2xl shadow-lg border border-border-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
+        <img src="https://images.unsplash.com/photo-1620921473215-d918341b52b2?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Quick Pickup Service" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md grayscale-image transform transition duration-300 hover:scale-105">
+        <h3 class="font-semibold text-2xl mb-3 text-darkGray">Seamless Pre-Order</h3>
+        <p class="text-base text-medium-gray">Skip the queue. Order ahead and grab your breakfast on the go.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="registration-form" class="relative py-20 mb-24 fade-up bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80');">
     <div class="absolute inset-0 bg-black/50 z-0"></div>
-    <div class="relative z-10 bg-cream max-w-lg mx-auto p-8 md:p-12 rounded-2xl shadow-xl border border-light-gray transform transition duration-300 hover:scale-[1.01]">
+    <div class="relative z-10 bg-cream max-w-lg mx-auto p-8 md:p-12 rounded-2xl shadow-xl border border-border-gray transform transition duration-300 hover:scale-[1.01]">
       <h3 class="text-3xl font-display text-center mb-8 text-darkGray">Join the Action!</h3>
       <form class="space-y-6">
         <div>
           <label for="fullName" class="sr-only">Full Name</label>
-          <input type="text" id="fullName" name="name" placeholder="Full Name" required class="w-full p-4 border border-light-gray rounded-lg">
+          <input type="text" id="fullName" name="name" placeholder="Full Name" required class="w-full p-4 border border-border-gray rounded-lg">
         </div>
         <div>
           <label for="emailAddress" class="sr-only">Email Address</label>
-          <input type="email" id="emailAddress" name="email" placeholder="Email Address" required class="w-full p-4 border border-light-gray rounded-lg">
+          <input type="email" id="emailAddress" name="email" placeholder="Email Address" required class="w-full p-4 border border-border-gray rounded-lg">
         </div>
         <div>
           <label for="phoneNumber" class="sr-only">Phone Number</label>
-          <input type="tel" id="phoneNumber" name="phone" placeholder="Phone Number (Optional)" class="w-full p-4 border border-light-gray rounded-lg">
+          <input type="tel" id="phoneNumber" name="phone" placeholder="Phone Number (Optional)" class="w-full p-4 border border-border-gray rounded-lg">
         </div>
 
         <div class="space-y-4">
@@ -246,84 +489,43 @@
     </div>
   </section>
 
-  <section class="max-w-5xl mx-auto text-center px-4 py-20 mb-20 fade-up">
-    <h2 class="text-5xl font-display mb-12 text-darkGray">Your Daily Fuel. Redefined.</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-      <div>
-        <img src="https://images.unsplash.com/photo-1541167710976-f36f6d6ee4f8?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Minimalist coffee cup with steam" class="rounded-2xl shadow-xl w-full object-cover h-72 md:h-96 grayscale-image transform transition duration-300 hover:scale-[1.02]">
-      </div>
-      <div class="text-left">
-        <p class="text-lg md:text-xl text-medium-gray leading-relaxed mb-6">
-          The **7AM Café** is your new go-to for a vibrant start. We're a dynamic spot designed for the modern pace of life.
-        </p>
-        <p class="text-lg md:text-xl text-medium-gray leading-relaxed">
-          Serving freshly crafted sandwiches, artisan coffee, and morning sides – all made for you to grab and go. **Fast. Easy. Delicious.**
-        </p>
-      </div>
-    </div>
-  </section>
+  <section id="faq" class="py-20 bg-light-gray fade-up">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-5xl font-display text-center mb-12 text-darkGray">FAQs.</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+        <div class="space-y-4">
+          <div class="faq-item active flex items-center justify-between" data-question-id="what-is-cafe">
+            <span class="text-xl font-semibold">What is The 7AM Café?</span>
+            <svg class="w-6 h-6 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+          <div class="faq-item flex items-center justify-between" data-question-id="how-to-order">
+            <span class="text-xl font-semibold">How do I order from The 7AM Café?</span>
+            <svg class="w-6 h-6 text-darkGray" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+          <div class="faq-item flex items-center justify-between" data-question-id="delivery-service">
+            <span class="text-xl font-semibold">Do you offer delivery service?</span>
+            <svg class="w-6 h-6 text-darkGray" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+          <div class="faq-item flex items-center justify-between" data-question-id="menu-options">
+            <span class="text-xl font-semibold">What kind of food do you offer?</span>
+            <svg class="w-6 h-6 text-darkGray" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+          <div class="faq-item flex items-center justify-between" data-question-id="waitlist-benefits">
+            <span class="text-xl font-semibold">What are the benefits of joining the waitlist?</span>
+            <svg class="w-6 h-6 text-darkGray" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+          <div class="faq-item flex items-center justify-between" data-question-id="partner-foobr">
+            <span class="text-xl font-semibold">How are you partnered with Foobr?</span>
+            <svg class="w-6 h-6 text-darkGray" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+          <div class="faq-item flex items-center justify-between" data-question-id="cafe-hours">
+            <span class="text-xl font-semibold">What will be your operating hours?</span>
+            <svg class="w-6 h-6 text-darkGray" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+        </div>
 
-  <section class="py-16 bg-light-gray fade-up">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h2 class="text-5xl font-display mb-12 text-darkGray">Why Choose Us?</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-cream p-8 rounded-xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-          <svg class="w-16 h-16 text-darkGray mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-          <h3 class="font-semibold text-2xl mb-3 text-darkGray">Efficiency Meets Flavor</h3>
-          <p class="text-medium-gray">Deliciously prepared food and coffee, served quickly so you can seize your day.</p>
-        </div>
-        <div class="bg-cream p-8 rounded-xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-          <svg class="w-16 h-16 text-darkGray mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h-5m-5 0h10a2 2 0 002-2V9a2 2 0 00-2-2h-2M5 20v-5a2 2 0 012-2h2.4a2 2 0 012 2v5m0 0h-5m5 0h-5m5 0a2 2 0 01-2-2V9a2 2 0 00-2-2h-2V5a2 2 0 00-2-2H9a2 2 0 00-2 2v2H5a2 2 0 00-2 2v8a2 2 0 002 2h10a2 2 0 002-2v-2"></path></svg>
-          <h3 class="font-semibold text-2xl mb-3 text-darkGray">Modern Community Hub</h3>
-          <p class="text-medium-gray">More than a café, it's a place to connect, collaborate, and fuel your passions.</p>
-        </div>
-        <div class="bg-cream p-8 rounded-xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-          <svg class="w-16 h-16 text-darkGray mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V3m0 9v3m0-10.99A7.495 7.495 0 0110 21H7a2 2 0 01-2-2V5a2 2 0 012-2h5c.507 0 .98.173 1.334.456M12 12h-2.585M16 12H12"></path></svg>
-          <h3 class="font-semibold text-2xl mb-3 text-darkGray">Smart Value</h3>
-          <p class="text-medium-gray">Great food at great prices, perfect for fueling up between classes or study sessions.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="max-w-6xl mx-auto px-4 py-20 mb-24 fade-up">
-    <h2 class="text-5xl font-display text-center mb-16 text-darkGray">Curated Selections</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="bg-cream p-6 rounded-2xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
-        <img src="https://images.unsplash.com/photo-1549489679-5095393d9a0d?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gourmet Sandwich" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md grayscale-image transform transition duration-300 hover:scale-105">
-        <h3 class="font-semibold text-2xl mb-3 text-darkGray">Signature Sandwiches</h3>
-        <p class="text-base text-medium-gray">Crafted with fresh, premium ingredients. Energize your morning.</p>
-      </div>
-      <div class="bg-cream p-6 rounded-2xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
-        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Perfect Iced Coffee" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md grayscale-image transform transition duration-300 hover:scale-105">
-        <h3 class="font-semibold text-2xl mb-3 text-darkGray">Artisan Iced Coffee</h3>
-        <p class="text-base text-medium-gray">Chilled perfection. The ideal wake-up call or afternoon pick-me-up.</p>
-      </div>
-      <div class="bg-cream p-6 rounded-2xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
-        <img src="https://images.unsplash.com/photo-1507041951235-9b2f69e6b45f?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wholesome Breakfast" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md grayscale-image transform transition duration-300 hover:scale-105">
-        <h3 class="font-semibold text-2xl mb-3 text-darkGray">Smart Value Combos</h3>
-        <p class="text-base text-medium-gray">Bundled combos at student-friendly prices. Eat well, spend less.</p>
-      </div>
-      <div class="bg-cream p-6 rounded-2xl shadow-lg border border-light-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
-        <img src="https://images.unsplash.com/photo-1620921473215-d918341b52b2?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Quick Pickup Service" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md grayscale-image transform transition duration-300 hover:scale-105">
-        <h3 class="font-semibold text-2xl mb-3 text-darkGray">Seamless Pre-Order</h3>
-        <p class="text-base text-medium-gray">Skip the queue. Order ahead and grab your breakfast on the go.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 bg-light-gray fade-up">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-5xl font-display mb-12 text-darkGray">Voices of Our Community</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-cream p-8 rounded-xl shadow-lg border border-medium-gray/30 transform transition duration-300 hover:scale-[1.02]">
-          <p class="italic text-lg text-medium-gray mb-4">"The sandwiches are incredibly fresh, and the coffee fuels my morning. The clean design of the cafe itself is a bonus!"</p>
-          <p class="font-semibold text-darkGray">- Alex P., University Student</p>
-        </div>
-        <div class="bg-cream p-8 rounded-xl shadow-lg border border-medium-gray/30 transform transition duration-300 hover:scale-[1.02]">
-          <p class="italic text-lg text-medium-gray mb-4">"Finally, a place that values both speed and quality. The pre-order system is a lifesaver for my busy schedule."</p>
-          <p class="font-semibold text-darkGray">- Sam W., Young Professional</p>
-        </div>
+        <div class="p-8 faq-answer" id="faq-answer-display">
+          </div>
       </div>
     </div>
   </section>
@@ -335,7 +537,7 @@
         Get exclusive offers, menu updates, and news straight to your inbox. Don't miss out on what's brewing at The 7AM Café!
       </p>
       <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-        <input type="email" placeholder="Your Email Address" class="flex-grow p-4 border border-light-gray rounded-lg focus:ring-2 focus:ring-darkGray">
+        <input type="email" placeholder="Your Email Address" class="flex-grow p-4 border border-border-gray rounded-lg">
         <button type="submit" class="btn-primary py-4 px-8 rounded-lg">
           Subscribe
         </button>
@@ -346,17 +548,18 @@
   <footer class="bg-darkGray text-white py-12">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
       <div>
-        <h3 class="text-2xl font-display mb-4 text-accent">The 7AM Café</h3>
+        <h3 class="text-2xl font-display mb-4 text-accent">7AM Café</h3>
         <p class="text-gray-400 leading-relaxed">Fueling your mornings, one delicious bite and sip at a time. Fast, easy, and undeniably delicious.</p>
       </div>
       <div>
         <h4 class="font-semibold text-xl mb-4 text-cream">Quick Links</h4>
         <ul class="space-y-2 text-gray-400">
-          <li><a href="#" class="hover:text-accent transition-colors">Home</a></li>
+          <li><a href="#hero" class="hover:text-accent transition-colors">Home</a></li>
+          <li><a href="#about" class="hover:text-accent transition-colors">About</a></li>
+          <li><a href="#offerings" class="hover:text-accent transition-colors">Menu</a></li>
+          <li><a href="#story" class="hover:text-accent transition-colors">Partner</a></li>
+          <li><a href="#faq" class="hover:text-accent transition-colors">FAQ</a></li>
           <li><a href="#registration-form" class="hover:text-accent transition-colors">Register for Match</a></li>
-          <li><a href="#" class="hover:text-accent transition-colors">Our Menu</a></li>
-          <li><a href="#" class="hover:text-accent transition-colors">About Us</a></li>
-          <li><a href="#" class="hover:text-accent transition-colors">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -385,3 +588,4 @@
 </body>
 
 </html>
+```
