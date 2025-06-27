@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The 7AM Cafe</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fffdf7;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem;
+    }
+
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    p.subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .hero-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .sunburst {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, #fde68a 30%, transparent 31%);
+      border-radius: 50%;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .hero-img {
+      width: 280px;
+      z-index: 1;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transform: rotate(-2deg);
+    }
+
+    .description {
+      text-align: center;
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
+
+    .description h2 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .description p {
+      color: #555;
+    }
+
+    .form-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+      width: 100%;
+      max-width: 420px;
+      border: 1px solid #eee;
+    }
+
+    input, button, label {
+      display: block;
+      width: 100%;
+      font-size: 1rem;
+    }
+
+    input {
+      padding: 0.8rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ccc;
+      border-radius: 0.6rem;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    button {
+      background: #facc15;
+      border: none;
+      padding: 0.9rem;
+      font-weight: 600;
+      border-radius: 0.6rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #eab308;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>The 7AM Café</h1>
+  <p class="subtitle">Fuel your mornings. Feel the game.</p>
+
+  <div class="hero-container">
+    <div class="sunburst"></div>
+    <img src="https://your-sandwich-image-link.com" alt="Sandwich" class="hero-img" />
+  </div>
+
+  <div class="description">
+    <h2>The Breakfast Club Match</h2>
+    <p>We’re teaming up with Foobr to kick off a delicious match day. Whether you're playing or cheering, sign up now and join our exclusive café waitlist before we launch.</p>
+  </div>
+
+  <form class="form-container">
+    <input type="text" name="name" placeholder="Full Name" required />
+    <input type="email" name="email" placeholder="Email Address" required />
+    <input type="tel" name="phone" placeholder="Phone Number" required />
+
+    <div class="radio-group">
+      <label><input type="radio" name="role" value="player" required /> Player</label>
+      <label><input type="radio" name="role" value="audience" /> Audience</label>
+    </div>
+
+    <label class="checkbox-label">
+      <input type="checkbox" name="waitlist" />
+      <span>Also join the waitlist for our official café launch</span>
+    </label>
+
+    <button type="submit">Register Now</button>
+  </form>
+
+  <footer>Powered by Foobr × The 7AM Café</footer>
+</body>
+
+</html>
