@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The 7AM Cafe - Fuel Your Mornings, Redefined</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    /* New Uber-Inspired Color Palette & Font */
+    /* Uber-Inspired Color Palette & Font */
     :root {
       --color-dark: #1E1E1E; /* Primary dark for text/backgrounds */
       --color-light: #FFFFFF; /* Primary light for backgrounds/text */
@@ -17,40 +17,21 @@
       --color-light-gray: #F2F2F2; /* For subtle section backgrounds */
       --color-medium-gray: #6A6A6A; /* For secondary text/borders */
       --color-border-gray: #E0E0E0; /* Lighter border for clean look */
+      --color-text-light-dark: #333333; /* Slightly lighter dark for body text */
     }
 
     body {
       background-color: var(--color-light);
-      color: var(--color-dark);
+      color: var(--color-text-light-dark);
       font-family: 'Inter', sans-serif;
-      line-height: 1.6;
+      line-height: 1.5;
       scroll-behavior: smooth;
     }
 
     h1, h2, h3, h4 {
-      font-family: 'Inter', sans-serif; /* All headings now Inter */
+      font-family: 'Inter', sans-serif;
       font-weight: 700; /* Bold for impact */
-    }
-
-    /* Custom fade-up animation */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .animate-fade-up {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
-
-    /* Subtle bounce for scroll indicator */
-    @keyframes bounce-subtle {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    .animate-bounce-subtle {
-      animation: bounce-subtle 2s infinite;
+      color: var(--color-dark);
     }
 
     /* General Button Styling (Uber-like) */
@@ -59,14 +40,13 @@
       color: var(--color-light);
       font-weight: 600;
       padding: 1rem 2.5rem;
-      border-radius: 9999px; /* Pill shape */
+      border-radius: 6px; /* Slightly rounded, not pill */
       transition: all 0.3s ease-in-out;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: none; /* Uber's buttons are typically flat, subtle shadow can be added if desired */
     }
     .btn-primary:hover {
-      background-color: var(--color-medium-gray); /* Darker gray hover */
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      background-color: var(--color-medium-gray);
+      transform: translateY(-1px);
     }
 
     .btn-accent {
@@ -74,32 +54,42 @@
       color: var(--color-light);
       font-weight: 600;
       padding: 1rem 2.5rem;
-      border-radius: 9999px;
+      border-radius: 6px; /* Slightly rounded */
       transition: all 0.3s ease-in-out;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     }
     .btn-accent:hover {
       background-color: var(--color-accent-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
 
-    /* Input focus styles */
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="tel"]:focus {
+    /* Form Input Styling (Uber-like) */
+    .uber-input {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--color-border-gray);
+      border-radius: 6px;
+      font-size: 1rem;
+      color: var(--color-dark);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .uber-input:focus {
       border-color: var(--color-accent);
-      box-shadow: 0 0 0 3px rgba(6, 193, 103, 0.2); /* Green shadow */
+      box-shadow: 0 0 0 1px var(--color-accent); /* Thin border highlight */
       outline: none;
     }
+    .uber-input::placeholder {
+      color: var(--color-medium-gray);
+    }
 
-    /* Custom radio and checkbox styling - using the new palette */
-    input[type="radio"] {
+    /* Custom radio styling for Uber look */
+    .uber-radio {
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
-      width: 1.25rem;
-      height: 1.25rem;
+      width: 1.15rem; /* Slightly smaller */
+      height: 1.15rem;
       border: 2px solid var(--color-medium-gray);
       border-radius: 50%;
       outline: none;
@@ -108,296 +98,327 @@
       justify-content: center;
       align-items: center;
       transition: all 0.2s ease-in-out;
+      flex-shrink: 0; /* Prevent shrinking in flex container */
     }
-    input[type="radio"]:checked {
+    .uber-radio:checked {
       background-color: var(--color-accent);
       border-color: var(--color-accent);
     }
-    input[type="radio"]:checked::after {
+    .uber-radio:checked::after {
       content: '';
-      width: 0.5rem;
-      height: 0.5rem;
+      width: 0.45rem; /* Smaller dot */
+      height: 0.45rem;
       border-radius: 50%;
       background-color: var(--color-light);
     }
+    .uber-radio:focus {
+      box-shadow: 0 0 0 2px rgba(6, 193, 103, 0.4); /* Green focus ring */
+    }
 
-    input[type="checkbox"] {
+    /* Custom checkbox styling for Uber look */
+    .uber-checkbox {
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
-      width: 1.25rem;
-      height: 1.25rem;
+      width: 1.15rem;
+      height: 1.15rem;
       border: 2px solid var(--color-medium-gray);
-      border-radius: 0.25rem;
+      border-radius: 3px; /* Slightly rounded square */
       outline: none;
       cursor: pointer;
       display: inline-block;
       vertical-align: middle;
       position: relative;
       transition: all 0.2s ease-in-out;
+      flex-shrink: 0; /* Prevent shrinking */
     }
-    input[type="checkbox"]:checked {
+    .uber-checkbox:checked {
       background-color: var(--color-accent);
       border-color: var(--color-accent);
     }
-    input[type="checkbox"]:checked::after {
+    .uber-checkbox:checked::after {
       content: '✔';
-      font-size: 0.9rem;
+      font-size: 0.8rem; /* Smaller checkmark */
       color: var(--color-light);
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
-
-    /* Hero Section Specific - Angled bottom edge */
-    .hero-angled-bottom {
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-      /* Adjust 85% and 100% to change angle severity */
-    }
-    @media (min-width: 768px) {
-      .hero-angled-bottom {
-        clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%); /* Sharper angle on desktop */
-      }
+    .uber-checkbox:focus {
+      box-shadow: 0 0 0 2px rgba(6, 193, 103, 0.4); /* Green focus ring */
     }
 
-
-    /* FAQ item styling - using new palette */
+    /* FAQ item styling - Uber-like clean list */
     .faq-item {
         background-color: var(--color-light);
-        border: 1px solid var(--color-border-gray);
-        border-radius: 0.75rem;
-        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--color-border-gray); /* Subtle separator */
+        padding: 1.5rem 0;
         cursor: pointer;
-        transition: all 0.2s ease-in-out;
+        transition: background-color 0.2s ease;
     }
     .faq-item:hover {
         background-color: var(--color-light-gray);
     }
-    .faq-item.active {
-        background-color: var(--color-dark);
-        color: var(--color-light);
-        border-color: var(--color-dark);
-    }
-    .faq-item.active span {
-        color: var(--color-light);
+    .faq-item.active .faq-question {
+        color: var(--color-accent); /* Green text for active question */
+        font-weight: 600;
     }
     .faq-item.active svg {
-        color: var(--color-light);
+        color: var(--color-accent);
+        transform: rotate(90deg); /* Rotate icon on active */
     }
     .faq-answer {
-        background-color: var(--color-accent); /* Green background for active answer */
-        color: var(--color-light);
-        border-radius: 0.75rem;
-        padding: 2rem;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        color: var(--color-text-light-dark);
+        padding-top: 1rem;
+        max-height: 0; /* For collapse effect */
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, padding-top 0.4s ease-out;
     }
-    .faq-answer p {
-        font-weight: 500;
+    .faq-answer.show {
+        max-height: 200px; /* Adjust as needed for max content */
+        padding-top: 1rem;
+        transition: max-height 0.5s ease-in, padding-top 0.5s ease-in;
+    }
+
+    /* For animation effect - use Tailwind's animation utility if needed, or custom JS */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-up');
-            // observer.unobserve(entry.target); // Uncomment to animate only once
-          } else {
-            // Optional: Remove class to re-animate on scroll back
-            // entry.target.classList.remove('animate-fade-up');
-          }
-        });
-      }, {
-        threshold: 0.15
-      });
-
-      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-      // FAQ Accordion-like functionality
-      const faqItems = document.querySelectorAll('.faq-item');
-      const faqAnswerContainer = document.getElementById('faq-answer-display');
-      const answers = {
-        "what-is-cafe": `The 7AM Café is your new go-to destination for a vibrant start to your day. We're a dynamic breakfast and sandwich spot designed for the modern pace of life, focusing on efficiency and quality.`,
-        "how-to-order": `You can pre-order via our upcoming mobile app or website for quick pickup. Details on launch will be shared soon!`,
-        "delivery-service": `Initially, we are focusing on pre-order and pickup. Delivery options will be explored for a later phase of our launch.`,
-        "menu-options": `Our menu features gourmet sandwiches, artisan iced coffee, and a selection of morning sides. We also offer student-friendly breakfast deals.`,
-        "waitlist-benefits": `Joining the waitlist gives you early access to launch promotions, exclusive menu sneak peeks, and priority for future events.`,
-        "partner-foobr": `Foobr is our strategic partner for the "Breakfast Club Match" event, helping us kick off with an exciting community engagement.`,
-        "cafe-hours": `The 7AM Café is designed to open early to fuel your mornings. Specific hours will be announced closer to our official launch date.`,
+      // Intersection Observer for fade-in-up animation
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
       };
 
-      // Set initial active state for the first FAQ item
-      if (faqItems.length > 0) {
-        faqItems[0].classList.add('active');
-        const initialQuestionId = faqItems[0].getAttribute('data-question-id');
-        faqAnswerContainer.innerHTML = `<p class="font-inter">${answers[initialQuestionId]}</p>`;
-      }
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // observer.unobserve(entry.target); // Uncomment to animate only once
+          } else {
+            // Optional: Remove 'visible' class if element should fade out when out of view
+            // entry.target.classList.remove('visible');
+          }
+        });
+      }, observerOptions);
 
+      document.querySelectorAll('.fade-in-up').forEach(element => {
+        observer.observe(element);
+      });
+
+      // FAQ Accordion Functionality (Uber-like, clean)
+      const faqItems = document.querySelectorAll('.faq-item');
       faqItems.forEach(item => {
         item.addEventListener('click', () => {
-          // Remove active class from all items
-          faqItems.forEach(i => {
-            i.classList.remove('active');
-            i.querySelector('svg').style.transform = 'rotate(0deg)'; // Reset icon rotation
-          });
+          const answer = item.querySelector('.faq-answer');
+          const svgIcon = item.querySelector('svg');
 
-          // Add active class to clicked item
-          item.classList.add('active');
-          item.querySelector('svg').style.transform = 'rotate(90deg)'; // Rotate icon
+          // Toggle 'active' class on clicked item
+          item.classList.toggle('active');
 
-          // Display the corresponding answer
-          const questionId = item.getAttribute('data-question-id');
-          faqAnswerContainer.innerHTML = `<p class="font-inter">${answers[questionId]}</p>`;
+          // Toggle 'show' class for answer to expand/collapse
+          if (answer.classList.contains('show')) {
+            answer.classList.remove('show');
+            answer.style.maxHeight = '0';
+            answer.style.paddingTop = '0';
+          } else {
+            // Collapse others if only one open at a time is desired (uncomment below)
+            // faqItems.forEach(otherItem => {
+            //   if (otherItem !== item && otherItem.classList.contains('active')) {
+            //     otherItem.classList.remove('active');
+            //     const otherAnswer = otherItem.querySelector('.faq-answer');
+            //     const otherSvgIcon = otherItem.querySelector('svg');
+            //     otherAnswer.classList.remove('show');
+            //     otherAnswer.style.maxHeight = '0';
+            //     otherAnswer.style.paddingTop = '0';
+            //     otherSvgIcon.style.transform = 'rotate(0deg)';
+            //   }
+            // });
+
+            answer.classList.add('show');
+            // Set max-height to scrollHeight for smooth transition based on content
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            answer.style.paddingTop = '1rem';
+          }
+
+          // Icon rotation handled by CSS active class
         });
       });
+
+      // Set current year in footer
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
     });
   </script>
 </head>
 
 <body>
 
-  <!-- Hero Section - Uber-like dynamic background and angled bottom -->
-  <section id="hero" class="relative h-screen flex flex-col justify-center items-center text-light p-4 overflow-hidden bg-dark hero-angled-bottom">
+  <section id="hero" class="relative min-h-screen flex items-center p-4 bg-dark overflow-hidden">
     <div class="absolute inset-0 z-0 opacity-80" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center;"></div>
-    <div class="absolute inset-0 bg-dark/60 z-0"></div> <!-- Dark overlay -->
-    <div class="relative z-10 text-center max-w-4xl mx-auto fade-up">
-      <h1 class="text-6xl md:text-8xl font-extrabold leading-tight mb-6 drop-shadow-lg">
-        Fuel Your Hustle. <br>Grab & Go.
-      </h1>
-      <p class="text-xl md:text-2xl text-light/90 mb-10 drop-shadow">
-        Freshly crafted gourmet sandwiches & artisan coffee for your modern pace.
-      </p>
-      <a href="#registration-form" class="btn-accent text-xl">
-        Register for Breakfast Club!
-      </a>
-    </div>
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-      <svg class="w-9 h-9 text-light animate-bounce-subtle" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-      </svg>
-    </div>
-  </section>
+    <div class="absolute inset-0 bg-dark/60 z-0"></div> <div class="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center py-20">
+      <div class="text-light text-center md:text-left fade-in-up">
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 drop-shadow-lg">
+          Fuel Your Mornings.<br> Grab & Go.
+        </h1>
+        <p class="text-xl md:text-2xl text-light/90 mb-8 drop-shadow max-w-lg md:max-w-none mx-auto md:mx-0">
+          Freshly crafted gourmet sandwiches & artisan coffee for your modern pace.
+        </p>
+      </div>
 
-  <!-- Registration Form Section (Content Unchanged, Styling Updated) -->
-  <section id="registration-form" class="relative py-20 mb-24 fade-up bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1534063854999-55615d058c70?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&h=1080&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-    <div class="absolute inset-0 bg-dark/60 z-0"></div>
-    <div class="relative z-10 bg-light max-w-lg mx-auto p-8 md:p-12 rounded-2xl shadow-xl border border-border-gray transform transition duration-300 hover:scale-[1.01]">
-      <h3 class="text-3xl font-bold text-center mb-8 text-dark">Join the Action!</h3>
-      <form class="space-y-6">
-        <div>
-          <label for="fullName" class="sr-only">Full Name</label>
-          <input type="text" id="fullName" name="name" placeholder="Full Name" required class="w-full p-4 border border-border-gray rounded-lg">
-        </div>
-        <div>
-          <label for="emailAddress" class="sr-only">Email Address</label>
-          <input type="email" id="emailAddress" name="email" placeholder="Email Address" required class="w-full p-4 border border-border-gray rounded-lg">
-        </div>
-        <div>
-          <label for="phoneNumber" class="sr-only">Phone Number</label>
-          <input type="tel" id="phoneNumber" name="phone" placeholder="Phone Number (Optional)" class="w-full p-4 border border-border-gray rounded-lg">
-        </div>
-
-        <div class="space-y-4">
-          <p class="font-semibold text-dark">How will you be joining?</p>
-          <div class="flex flex-wrap gap-6">
-            <label class="flex items-center space-x-3 cursor-pointer text-lg text-medium-gray">
-              <input type="radio" name="role" value="player" required>
-              <span>Player</span>
-            </label>
-            <label class="flex items-center space-x-3 cursor-pointer text-lg text-medium-gray">
-              <input type="radio" name="role" value="audience">
-              <span>Audience</span>
-            </label>
+      <div id="registration-form" class="bg-light p-6 md:p-8 rounded-lg shadow-2xl w-full max-w-md mx-auto fade-in-up">
+        <h3 class="text-2xl font-bold mb-6 text-dark text-center">Join the Breakfast Club!</h3>
+        <form class="space-y-5">
+          <div>
+            <label for="fullName" class="sr-only">Full Name</label>
+            <input type="text" id="fullName" name="name" placeholder="Full Name" required class="uber-input">
           </div>
-        </div>
+          <div>
+            <label for="emailAddress" class="sr-only">Email Address</label>
+            <input type="email" id="emailAddress" name="email" placeholder="Email Address" required class="uber-input">
+          </div>
+          <div>
+            <label for="phoneNumber" class="sr-only">Phone Number</label>
+            <input type="tel" id="phoneNumber" name="phone" placeholder="Phone Number (Optional)" class="uber-input">
+          </div>
 
-        <label class="flex items-start space-x-3 text-base cursor-pointer text-medium-gray mt-6">
-          <input type="checkbox" name="waitlist" class="mt-1">
-          <span>Yes, also sign me up for the exclusive waitlist for The 7AM Café's official launch!</span>
-        </label>
+          <div class="space-y-3">
+            <p class="font-semibold text-dark text-lg">How will you be joining?</p>
+            <div class="flex flex-wrap gap-x-8 gap-y-4">
+              <label class="flex items-center space-x-3 cursor-pointer text-base text-medium-gray">
+                <input type="radio" name="role" value="player" required class="uber-radio">
+                <span>Player</span>
+              </label>
+              <label class="flex items-center space-x-3 cursor-pointer text-base text-medium-gray">
+                <input type="radio" name="role" value="audience" class="uber-radio">
+                <span>Audience</span>
+              </label>
+            </div>
+          </div>
 
-        <button type="submit" class="btn-accent w-full text-xl py-4 rounded-lg">
-          Register & Get Ready!
-        </button>
-      </form>
+          <label class="flex items-start space-x-3 text-sm cursor-pointer text-medium-gray mt-4">
+            <input type="checkbox" name="waitlist" class="mt-1 uber-checkbox">
+            <span>Yes, sign me up for the exclusive waitlist for The 7AM Café's official launch!</span>
+          </label>
+
+          <button type="submit" class="btn-accent w-full text-lg py-3 mt-6">
+            Register & Get Ready!
+          </button>
+        </form>
+      </div>
     </div>
   </section>
 
-  <!-- Two Offerings Section -->
-  <section id="offerings" class="max-w-6xl mx-auto px-4 py-20 mb-24 fade-up">
-    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16 text-dark">Curated Selections</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center">
-      <div class="bg-light p-6 rounded-2xl shadow-lg border border-border-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
-        <img src="https://images.unsplash.com/photo-1549489679-5095393d9a0d?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gourmet Sandwich" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md transform transition duration-300 hover:scale-105">
+  <section id="offerings" class="max-w-6xl mx-auto px-4 py-20 fade-in-up">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16">Curated Selections</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+      <div class="bg-light p-6 md:p-8 rounded-lg shadow-md border border-border-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <img src="https://images.unsplash.com/photo-1549489679-5095393d9a0d?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gourmet Sandwich" class="rounded-lg mb-6 w-full h-52 object-cover shadow-sm">
         <h3 class="font-bold text-2xl mb-3 text-dark">Signature Sandwiches</h3>
-        <p class="text-base text-medium-gray">Crafted with fresh, premium ingredients. Energize your morning.</p>
+        <p class="text-base text-medium-gray">Crafted with fresh, premium ingredients and unique flavor combinations to energize your morning.</p>
+        <a href="#" class="inline-block mt-6 text-accent font-semibold hover:underline">Learn More &rarr;</a>
       </div>
-      <div class="bg-light p-6 rounded-2xl shadow-lg border border-border-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
-        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Perfect Iced Coffee" class="rounded-lg mb-6 w-full h-48 object-cover shadow-md transform transition duration-300 hover:scale-105">
+      <div class="bg-light p-6 md:p-8 rounded-lg shadow-md border border-border-gray hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=600&h=400&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Perfect Iced Coffee" class="rounded-lg mb-6 w-full h-52 object-cover shadow-sm">
         <h3 class="font-bold text-2xl mb-3 text-dark">Artisan Iced Coffee</h3>
-        <p class="text-base text-medium-gray">Chilled perfection. The ideal wake-up call or afternoon pick-me-up.</p>
+        <p class="text-base text-medium-gray">Chilled perfection made with ethically sourced beans, offering the ideal wake-up call or pick-me-up.</p>
+        <a href="#" class="inline-block mt-6 text-accent font-semibold hover:underline">Learn More &rarr;</a>
       </div>
     </div>
   </section>
 
-  <!-- FAQ Section - Uber-like clean layout -->
-  <section id="faq" class="py-20 bg-light-gray fade-up">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-12 text-dark">FAQs.</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-        <!-- Left Column: Questions List -->
-        <div class="space-y-4">
-          <div class="faq-item flex items-center justify-between" data-question-id="what-is-cafe">
-            <span class="text-xl font-semibold">What is The 7AM Café?</span>
-            <svg class="w-6 h-6 text-dark transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+  <section id="faq" class="py-20 bg-light-gray fade-in-up">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-12">Frequently Asked Questions</h2>
+      <div class="divide-y divide-border-gray">
+        <div class="faq-item">
+          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
+            <span>What is The 7AM Café?</span>
+            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
           </div>
-          <div class="faq-item flex items-center justify-between" data-question-id="how-to-order">
-            <span class="text-xl font-semibold">How do I order from The 7AM Café?</span>
-            <svg class="w-6 h-6 text-dark transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-          </div>
-          <div class="faq-item flex items-center justify-between" data-question-id="delivery-service">
-            <span class="text-xl font-semibold">Do you offer delivery service?</span>
-            <svg class="w-6 h-6 text-dark transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-          </div>
-          <div class="faq-item flex items-center justify-between" data-question-id="menu-options">
-            <span class="text-xl font-semibold">What kind of food do you offer?</span>
-            <svg class="w-6 h-6 text-dark transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-          </div>
-          <div class="faq-item flex items-center justify-between" data-question-id="waitlist-benefits">
-            <span class="text-xl font-semibold">What are the benefits of joining the waitlist?</span>
-            <svg class="w-6 h-6 text-dark transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-          </div>
-          <div class="faq-item flex items-center justify-between" data-question-id="partner-foobr">
-            <span class="text-xl font-semibold">How are you partnered with Foobr?</span>
-            <svg class="w-6 h-6 text-dark transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-          </div>
-          <div class="faq-item flex items-center justify-between" data-question-id="cafe-hours">
-            <span class="text-xl font-semibold">What will be your operating hours?</span>
-            <svg class="w-6 h-6 text-dark transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          <div class="faq-answer">
+            <p>The 7AM Café is your new go-to destination for a vibrant start to your day. We're a dynamic breakfast and sandwich spot designed for the modern pace of life, focusing on efficiency and quality. We aim to redefine convenience with gourmet taste.</p>
           </div>
         </div>
-
-        <!-- Right Column: Answer Display -->
-        <div class="p-8 faq-answer" id="faq-answer-display">
-          <!-- Answer will be dynamically inserted here by JavaScript -->
+        <div class="faq-item">
+          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
+            <span>How do I order from The 7AM Café?</span>
+            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+          <div class="faq-answer">
+            <p>You can pre-order via our upcoming mobile app or website for quick and convenient pickup. Details on our official launch and ordering platforms will be shared very soon!</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
+            <span>Do you offer delivery service?</span>
+            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+          <div class="faq-answer">
+            <p>Initially, we are focusing on providing an exceptional in-store pre-order and pickup experience. Delivery options will be thoroughly explored and potentially introduced in a later phase of our service.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
+            <span>What kind of food and beverages do you offer?</span>
+            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+          <div class="faq-answer">
+            <p>Our menu proudly features a selection of gourmet sandwiches crafted with fresh, high-quality ingredients, artisan iced coffees, and a variety of complementary morning sides. We also have special student-friendly breakfast deals.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
+            <span>What are the benefits of joining the waitlist?</span>
+            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+          <div class="faq-answer">
+            <p>Joining our waitlist grants you exclusive early access to grand opening promotions, sneak peeks of our full menu, and priority invitations to future special events and tastings. Be among the first to experience The 7AM Café!</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
+            <span>How are you partnered with Foobr?</span>
+            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+          <div class="faq-answer">
+            <p>Foobr is our esteemed strategic partner for our exciting "Breakfast Club Match" event. They are instrumental in helping us kick off our launch with a dynamic and engaging community event.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question flex items-center justify-between text-lg md:text-xl font-semibold text-dark">
+            <span>What will be your operating hours?</span>
+            <svg class="w-6 h-6 text-medium-gray transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+          <div class="faq-answer">
+            <p>The 7AM Café is specifically designed to open early to cater to your morning fuel needs. Our precise operating hours will be officially announced closer to our grand opening date, so stay tuned!</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-light py-12">
+  <footer class="bg-dark text-light py-12 fade-in-up">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
       <div>
         <h3 class="text-2xl font-extrabold mb-4 text-accent">7AM Café</h3>
-        <p class="text-medium-gray leading-relaxed">Fueling your mornings, one delicious bite and sip at a time. Fast, easy, and undeniably delicious.</p>
+        <p class="text-medium-gray leading-relaxed text-sm">Fueling your mornings, one delicious bite and sip at a time. Fast, easy, and undeniably delicious.</p>
       </div>
       <div>
         <h4 class="font-semibold text-xl mb-4 text-light">Quick Links</h4>
-        <ul class="space-y-2 text-medium-gray">
+        <ul class="space-y-2 text-medium-gray text-sm">
           <li><a href="#hero" class="hover:text-accent transition-colors">Home</a></li>
-          <li><a href="#registration-form" class="hover:text-accent transition-colors">Register</a></li>
+          <li><a href="#hero" class="hover:text-accent transition-colors">Register</a></li>
           <li><a href="#offerings" class="hover:text-accent transition-colors">Menu</a></li>
           <li><a href="#faq" class="hover:text-accent transition-colors">FAQ</a></li>
         </ul>
@@ -406,25 +427,21 @@
         <h4 class="font-semibold text-xl mb-4 text-light">Connect With Us</h4>
         <div class="flex justify-center md:justify-start space-x-6 mb-4">
           <a href="#" class="text-medium-gray hover:text-accent transition-colors">
-            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22H12c5.523 0 10-4.477 10-10z" clip-rule="evenodd" /></svg>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22H12c5.523 0 10-4.477 10-10z" clip-rule="evenodd" /></svg>
           </a>
           <a href="#" class="text-medium-gray hover:text-accent transition-colors">
-            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.002 3.797.048.843.04 1.144.109 1.52.271a3.7 3.7 0 011.417.929c.65.65 1.117 1.417 1.27 1.52.162.377.23.679.271 1.52.047 1.012.048 1.372.048 3.797v.654c0 2.43-.002 2.784-.048 3.797-.04.843-.109 1.144-.271 1.52a3.7 3.7 0 01-.929 1.417c-.65.65-1.417 1.117-1.52 1.27-.377.162-.679.23-1.52.271-1.012.047-1.372.048-3.797.048h-.654c-2.43 0-2.784-.002-3.797-.048-.843-.04-1.144-.109-1.52-.271a3.7 3.7 0 01-1.417-.929c-.65-.65-1.117-1.417-1.27-1.52-.162-.377-.23-.679-.271-1.52-.047-1.012-.048-1.372-.048-3.797v-.654c0-2.43.002-2.784.048-3.797.04-.843.109-1.144.271-1.52a3.7 3.7 0 01.929-1.417c.65-.65 1.417-1.117 1.52-1.27.377-.162.679-.23.271-1.52C2.002 4.478 2 4.118 2 2h.654zm-.774 4.099a4.81 4.81 0 00-.007 1.706c0 2.443.001 2.686.059 3.826.044.869.193 1.46.466 1.965.485.897 1.157 1.517 2.072 1.936.505.275 1.096.425 1.965.466 1.14.058 1.383.06 3.826.059h.654c2.443 0 2.686-.001 3.826-.059.869-.044 1.46-.193 1.965-.466.897-.485 1.517-1.157 1.936-2.072.275-.505.425-1.096-.466-1.965C21.127 3.633 20.455 2.96 19.54 2.544c-.505-.275-1.096-.425-1.965-.466-1.14-.058-1.383-.06-3.826-.059h-.654c-2.443 0-2.686.001-3.826.059-.869.044-1.46.193-1.965.466C4.873 3.633 4.201 4.305 3.785 5.22c-.275.505-.425 1.096-.466 1.965-.058 1.14-.06 1.383-.059 3.826v.654z" /><path d="M12 4.885c-3.351 0-6.075 2.724-6.075 6.075S8.649 17.035 12 17.035s6.075-2.724 6.075-6.075S15.351 4.885 12 4.885zm0 10.05a3.975 3.975 0 110-7.95 3.975 3.975 0 010 7.95z" /><circle cx="18.02" cy="6.02" r="1.44" /></svg>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.002 3.797.048.843.04 1.144.109 1.52.271a3.7 3.7 0 011.417.929c.65.65 1.117 1.417 1.27 1.52.162.377.23.679.271 1.52.047 1.012.048 1.372.048 3.797v.654c0 2.43-.002 2.784-.048 3.797-.04.843-.109 1.144-.271 1.52a3.7 3.7 0 01-.929 1.417c-.65.65-1.417 1.117-1.52 1.27-.377.162-.679.23-1.52.271-1.012.047-1.372.048-3.797.048h-.654c-2.43 0-2.784-.002-3.797-.048-.843-.04-1.144-.109-1.52-.271a3.7 3.7 0 01-1.417-.929c-.65-.65-1.117-1.417-1.27-1.52-.162-.377-.23-.679-.271-1.52-.047-1.012-.048-1.372-.048-3.797v-.654c0-2.43.002-2.784.048-3.797.04-.843.109-1.144.271-1.52a3.7 3.7 0 01.929-1.417c.65-.65 1.417-1.117 1.52-1.27.377-.162.679-.23.271-1.52C2.002 4.478 2 4.118 2 2h.654zm-.774 4.099a4.81 4.81 0 00-.007 1.706c0 2.443.001 2.686.059 3.826.044.869.193 1.46.466 1.965.485.897 1.157 1.517 2.072 1.936.505.275 1.096.425 1.965.466 1.14.058 1.383.06 3.826.059h.654c2.443 0 2.686-.001 3.826-.059.869-.044 1.46-.193 1.965-.466.897-.485 1.517-1.157 1.936-2.072.275-.505.425-1.096-.466-1.965C21.127 3.633 20.455 2.96 19.54 2.544c-.505-.275-1.096-.425-1.965-.466-1.14-.058-1.383-.06-3.826-.059h-.654c-2.443 0-2.686.001-3.826.059-.869.044-1.46.193-1.965.466C4.873 3.633 4.201 4.305 3.785 5.22c-.275.505-.425 1.096-.466 1.965-.058 1.14-.06 1.383-.059 3.826v.654z" /><path d="M12 4.885c-3.351 0-6.075 2.724-6.075 6.075S8.649 17.035 12 17.035s6.075-2.724 6.075-6.075S15.351 4.885 12 4.885zm0 10.05a3.975 3.975 0 110-7.95 3.975 3.975 0 010 7.95z" /><circle cx="18.02" cy="6.02" r="1.44" /></svg>
           </a>
           <a href="#" class="text-medium-gray hover:text-accent transition-colors">
-            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 20.988c-.146-.353-.22-.728-.22-1.103V4.113C-.163 3.498.058 2.94.498 2.417 1.05 1.83 1.777 1.547 2.68 1.547h18.64c.903 0 1.63.283 2.182.87.44.523.66 1.082.66 1.7V19.885c0 .375-.074.75-.22 1.103-.146.353-.353.64-.62.862-.266.223-.55.335-.85.335H.677c-.3 0-.583-.112-.85-.335-.266-.222-.473-.509-.62-.862zm10.74-3.955V8.293h-1.63V17.03c0 .06.01.12.03.175.02.057.05.093.09.11.04.02.083.03.13.03h1.38c.05 0 .093-.01.13-.03.04-.017.07-.053.09-.11.02-.055.03-.115.03-.175zm-3.66-8.77c.414 0 .75-.336.75-.75S7.544 6.75 7.13 6.75s-.75.336-.75.75.336.75.75.75zm13.12 8.77V8.293h-1.63V17.03c0 .06.01.12.03.175.02.057.05.093.09.11.04.02.083.03.13.03h1.38c.05 0 .093-.01.13-.03.04-.017.07-.053.09-.11.02-.055.03-.115.03-.175zm-3.66-8.77c.414 0 .75-.336.75-.75S16.034 6.75 15.62 6.75s-.75.336-.75.75.336.75.75.75zm-3.66 8.77V8.293h-1.63V17.03c0 .06.01.12.03.175.02.057.05.093.09.11.04.02.083.03.13.03h1.38c.05 0 .093-.01.13-.03.04-.017.07-.053.09-.11.02-.055.03-.115.03-.175z" /></svg>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 20.988c-.146-.353-.22-.728-.22-1.103V4.113C-.163 3.498.058 2.94.498 2.417 1.05 1.83 1.777 1.547 2.68 1.547h18.64c.903 0 1.63.283 2.182.87.44.523.66 1.082.66 1.7V19.885c0 .375-.074.75-.22 1.103-.146.353-.353.64-.62.862-.266.223-.55.335-.85.335H.677c-.3 0-.583-.112-.85-.335-.266-.222-.473-.509-.62-.862zm10.74-3.955V8.293h-1.63V17.03c0 .06.01.12.03.175.02.057.05.093.09.11.04.02.083.03.13.03h1.38c.05 0 .093-.01.13-.03.04-.017.07-.053.09-.11.02-.055.03-.115.03-.175zm-3.66-8.77c.414 0 .75-.336.75-.75S7.544 6.75 7.13 6.75s-.75.336-.75.75.336.75.75.75zm13.12 8.77V8.293h-1.63V17.03c0 .06.01.12.03.175.02.057.05.093.09.11.04.02.083.03.13.03h1.38c.05 0 .093-.01.13-.03.04-.017.07-.053.09-.11.02-.055.03-.115.03-.175zm-3.66-8.77c.414 0 .75-.336.75-.75S16.034 6.75 15.62 6.75s-.75.336-.75.75.336.75.75.75zm-3.66 8.77V8.293h-1.63V17.03c0 .06.01.12.03.175.02.057.05.093.09.11.04.02.083.03.13.03h1.38c.05 0 .093-.01.13-.03.04-.017.07-.053.09-.11.02-.055.03-.115.03-.175z" /></svg>
           </a>
         </div>
-        <p class="text-medium-gray">&copy; <span id="currentYear"></span> The 7AM Café. All rights reserved.</p>
-        <p class="text-medium-gray">Proudly partnered with Foobr.</p>
+        <p class="text-medium-gray text-sm">&copy; <span id="currentYear"></span> The 7AM Café. All rights reserved.</p>
+        <p class="text-medium-gray text-sm">Proudly partnered with Foobr.</p>
       </div>
     </div>
   </footer>
 
-  <script>
-    // Set current year in footer
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-  </script>
 </body>
 
 </html>
