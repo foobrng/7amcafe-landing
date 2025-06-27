@@ -3,176 +3,124 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The 7AM Cafe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Playfair Display', 'serif']
+          },
+          colors: {
+            cream: '#fffdf7',
+            sunshine: '#fde68a',
+            banana: '#facc15',
+            bananaDark: '#eab308'
+          }
+        }
+      }
+    }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-up');
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    });
+  </script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    .animate-fade-up {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+      transition: all 0.7s ease-in-out;
     }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #fffdf7;
-      color: #222;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 3rem 1.5rem;
-    }
-
-    h1, h2 {
-      font-family: 'Playfair Display', serif;
-    }
-
-    h1 {
-      font-size: 3rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    p.subtitle {
-      font-size: 1.1rem;
-      color: #666;
-      margin-bottom: 2rem;
-    }
-
-    .hero-container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .sunburst {
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      background: radial-gradient(circle, #fde68a 30%, transparent 31%);
-      border-radius: 50%;
-      z-index: 0;
-      opacity: 0.4;
-    }
-
-    .hero-img {
-      width: 280px;
-      z-index: 1;
-      border-radius: 1rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transform: rotate(-2deg);
-    }
-
-    .description {
-      text-align: center;
-      max-width: 520px;
-      margin-bottom: 2rem;
-    }
-
-    .description h2 {
-      font-size: 1.75rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .description p {
-      color: #555;
-    }
-
-    .form-container {
-      background: white;
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-      width: 100%;
-      max-width: 420px;
-      border: 1px solid #eee;
-    }
-
-    input, button, label {
-      display: block;
-      width: 100%;
-      font-size: 1rem;
-    }
-
-    input {
-      padding: 0.8rem;
-      margin-bottom: 1.2rem;
-      border: 1px solid #ccc;
-      border-radius: 0.6rem;
-    }
-
-    .radio-group {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .checkbox-label {
-      display: flex;
-      gap: 0.5rem;
-      align-items: flex-start;
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-    }
-
-    button {
-      background: #facc15;
-      border: none;
-      padding: 0.9rem;
-      font-weight: 600;
-      border-radius: 0.6rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    button:hover {
-      background: #eab308;
-    }
-
-    footer {
-      margin-top: 3rem;
-      font-size: 0.85rem;
-      color: #aaa;
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
     }
   </style>
 </head>
 
-<body>
-  <h1>The 7AM Café</h1>
-  <p class="subtitle">Fuel your mornings. Feel the game.</p>
+<body class="bg-cream text-gray-900 font-sans">
+  <header class="text-center py-16 px-4">
+    <h1 class="text-4xl font-display font-semibold mb-2">The 7AM Café</h1>
+    <p class="text-gray-600 text-lg">Fuel your mornings. Feel the game.</p>
+  </header>
 
-  <div class="hero-container">
-    <div class="sunburst"></div>
-    <img src="https://res.cloudinary.com/simeon/image/upload/v1746524982/foobr/spiral_bread.jpg" alt="Sandwich" class="hero-img" />
-  </div>
+  <section class="flex justify-center relative mb-16 px-4">
+    <div class="absolute w-40 h-40 bg-sunshine rounded-full opacity-40 -z-10"></div>
+    <img src="https://your-sandwich-image-link.com" alt="Sandwich" class="rounded-2xl shadow-xl w-72 transform -rotate-2">
+  </section>
 
-  <div class="description">
-    <h2>The Breakfast Club Match</h2>
+  <section class="text-center max-w-2xl mx-auto mb-16 fade-up">
+    <h2 class="text-2xl font-display mb-4">The Breakfast Club Match</h2>
     <p>We’re teaming up with Foobr to kick off a delicious match day. Whether you're playing or cheering, sign up now and join our exclusive café waitlist before we launch.</p>
-  </div>
+  </section>
 
-  <form class="form-container">
-    <input type="text" name="name" placeholder="Full Name" required />
-    <input type="email" name="email" placeholder="Email Address" required />
-    <input type="tel" name="phone" placeholder="Phone Number" required />
+  <form class="bg-white max-w-md mx-auto p-8 rounded-2xl shadow-lg border border-gray-100 mb-16 fade-up">
+    <input type="text" name="name" placeholder="Full Name" required class="w-full mb-4 p-3 border border-gray-300 rounded-md">
+    <input type="email" name="email" placeholder="Email Address" required class="w-full mb-4 p-3 border border-gray-300 rounded-md">
+    <input type="tel" name="phone" placeholder="Phone Number" required class="w-full mb-4 p-3 border border-gray-300 rounded-md">
 
-    <div class="radio-group">
-      <label><input type="radio" name="role" value="player" required /> Player</label>
-      <label><input type="radio" name="role" value="audience" /> Audience</label>
+    <div class="flex space-x-4 mb-4">
+      <label class="flex items-center space-x-2">
+        <input type="radio" name="role" value="player" required>
+        <span>Player</span>
+      </label>
+      <label class="flex items-center space-x-2">
+        <input type="radio" name="role" value="audience">
+        <span>Audience</span>
+      </label>
     </div>
 
-    <label class="checkbox-label">
-      <input type="checkbox" name="waitlist" />
+    <label class="flex items-start space-x-2 text-sm mb-6">
+      <input type="checkbox" name="waitlist">
       <span>Also join the waitlist for our official café launch</span>
     </label>
 
-    <button type="submit">Register Now</button>
+    <button type="submit" class="bg-banana hover:bg-bananaDark text-black font-semibold py-3 px-4 rounded-md w-full transition-colors">Register Now</button>
   </form>
 
-  <footer>Powered by Foobr × The 7AM Café</footer>
+  <section class="max-w-3xl mx-auto text-center px-4 mb-20 fade-up">
+    <h2 class="text-2xl font-display mb-4">What is The 7AM Café?</h2>
+    <p>The 7AM Café is your new go-to breakfast and sandwich spot in town — powered by flavor, speed, and a Gen Z twist. We serve freshly crafted sandwiches, artisan coffee, and morning sides that are made to go. Fast. Easy. Delicious.</p>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-4 mb-24 fade-up">
+    <h2 class="text-2xl font-display text-center mb-8">Explore Our Offerings</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <h3 class="font-semibold mb-2">Signature Sandwiches</h3>
+        <p class="text-sm text-gray-600">Crafted with love, layered with flavor. Our morning sandwiches keep you going strong.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <h3 class="font-semibold mb-2">Iced Coffee</h3>
+        <p class="text-sm text-gray-600">Chilled, smooth, and energizing. The perfect wake-up call for any day.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <h3 class="font-semibold mb-2">Breakfast Deals</h3>
+        <p class="text-sm text-gray-600">Bundled combos at student-friendly prices. Eat well, spend less.</p>
+      </div>
+      <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <h3 class="font-semibold mb-2">Pre-Order & Pickup</h3>
+        <p class="text-sm text-gray-600">Skip the queue. Order ahead and grab your breakfast on the go.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-yellow-50 py-10 text-center text-sm text-gray-600">
+    <p>&copy; 2025 The 7AM Café. All rights reserved.</p>
+    <p>Designed in partnership with Foobr.</p>
+  </footer>
 </body>
 
 </html>
