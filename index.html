@@ -36,6 +36,8 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       padding: 2rem;
       margin: 2rem auto;
+      width: 90%;
+      max-width: 400px;
     }
 
     /* Tabbed Form Styles */
@@ -60,6 +62,7 @@
       color: var(--color-medium-gray);
       cursor: pointer;
       transition: all 0.3s ease;
+      font-size: 0.9rem;
     }
 
     .form-tab.active {
@@ -89,10 +92,10 @@
 
     .form-input, .form-select {
       width: 100%;
-      padding: 1rem;
+      padding: 0.8rem;
       border: 1px solid var(--color-border-gray);
       border-radius: 6px;
-      font-size: 1rem;
+      font-size: 0.9rem;
       background-color: rgba(255, 255, 255, 0.9);
     }
 
@@ -100,8 +103,8 @@
       appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236A6A6A' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 1rem center;
-      background-size: 16px;
+      background-position: right 0.8rem center;
+      background-size: 12px;
     }
 
     .checkbox-group {
@@ -112,17 +115,18 @@
 
     .checkbox-label {
       margin-left: 0.5rem;
-      font-size: 0.875rem;
+      font-size: 0.8rem;
       color: var(--color-medium-gray);
     }
 
     .success-message {
       display: none;
       margin-top: 1.5rem;
-      padding: 1rem;
+      padding: 0.8rem;
       background-color: rgba(230, 57, 70, 0.1);
       border-left: 3px solid var(--color-accent);
       color: var(--color-dark);
+      font-size: 0.9rem;
     }
 
     .btn-accent {
@@ -133,6 +137,8 @@
       font-weight: 600;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      font-size: 0.9rem;
+      padding: 0.8rem;
     }
 
     .btn-accent:hover {
@@ -145,25 +151,49 @@
     }
 
     .event-title {
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 800;
       color: var(--color-accent);
       margin-bottom: 0.5rem;
     }
 
     .event-subtitle {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: var(--color-medium-gray);
       font-style: italic;
     }
 
     .footer-text {
       text-align: center;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--color-medium-gray);
-      margin-top: 2rem;
+      margin-top: 1.5rem;
       padding-top: 1rem;
       border-top: 1px solid var(--color-border-gray);
+    }
+
+    .hero-header {
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .logo {
+      height: 30px;
+      width: auto;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .social-icon {
+      color: white;
+      font-size: 0.9rem;
     }
 
     @keyframes fadeIn {
@@ -173,23 +203,61 @@
 
     /* Responsive adjustments */
     @media (max-width: 640px) {
+      .registration-container {
+        padding: 1.5rem;
+        margin: 1rem auto;
+        transform: scale(0.95);
+        transform-origin: top;
+      }
+
       .input-row {
         flex-direction: column;
         gap: 0;
       }
       
       .form-tab {
-        padding: 0.5rem;
-        font-size: 0.875rem;
-      }
-      
-      .registration-container {
-        padding: 1.5rem;
-        margin: 1rem;
+        padding: 0.6rem;
+        font-size: 0.8rem;
       }
       
       .event-title {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+      }
+
+      .event-subtitle {
+        font-size: 0.8rem;
+      }
+
+      .hero-header {
+        padding: 0.8rem;
+      }
+
+      .logo {
+        height: 25px;
+      }
+
+      .social-icon {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .registration-container {
+        padding: 1.2rem;
+        transform: scale(0.9);
+      }
+
+      .form-tab {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+      }
+
+      .form-input, .form-select {
+        padding: 0.7rem;
+      }
+
+      .btn-accent {
+        padding: 0.7rem;
       }
     }
   </style>
@@ -202,9 +270,9 @@
     <div class="absolute inset-0 bg-dark/60 z-0"></div>
     
     <!-- Hero header with logo and social icons -->
-    <div class="absolute top-0 left-0 right-0 z-20 py-6 px-4 md:px-8 flex justify-between items-center hero-header">
+    <div class="absolute top-0 left-0 right-0 z-20 py-4 px-4 flex justify-between items-center hero-header">
       <!-- Logo as image (replace src with your logo) -->
-      <img src="https://via.placeholder.com/150x40?text=The+Bowl+Series" alt="The Bowl Series Logo" class="logo">
+      <img src="https://via.placeholder.com/120x30?text=The+Bowl+Series" alt="The Bowl Series Logo" class="logo">
       
       <div class="social-icons">
         <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
@@ -214,7 +282,7 @@
     </div>
     
     <!-- Centered registration form with tabs -->
-    <div class="relative z-10 w-full max-w-md mx-auto registration-container fade-in-up">
+    <div class="relative z-10 w-full mx-auto registration-container fade-in-up">
       <div class="event-header">
         <h1 class="event-title">The Bowl Series 1.0</h1>
         <p class="event-subtitle">"You either bring the heat or you stay home."</p>
@@ -222,8 +290,8 @@
       
       <div class="form-container">
         <div class="form-tabs">
-          <button class="form-tab active" onclick="switchTab('player')">Player Registration</button>
-          <button class="form-tab" onclick="switchTab('audience')">Audience Registration</button>
+          <button class="form-tab active" onclick="switchTab('player')">Player</button>
+          <button class="form-tab" onclick="switchTab('audience')">Audience</button>
         </div>
         
         <!-- Player Registration Form -->
@@ -249,7 +317,7 @@
           <div class="input-row">
             <div class="input-group">
               <select class="form-select" required>
-                <option value="">Position Preference</option>
+                <option value="">Position</option>
                 <option value="goalkeeper">GK</option>
                 <option value="defender">Defender</option>
                 <option value="midfielder">Midfielder</option>
@@ -259,7 +327,7 @@
             </div>
             <div class="input-group">
               <select class="form-select" required>
-                <option value="">Team Selection</option>
+                <option value="">Team</option>
                 <option value="g-team">Under G Team</option>
                 <option value="adenike-team">Adenike Team</option>
               </select>
@@ -268,7 +336,7 @@
           
           <div class="input-group">
             <select class="form-select" required>
-              <option value="">Experience Level</option>
+              <option value="">Experience</option>
               <option value="beginner">Beginner</option>
               <option value="intermediate">Intermediate</option>
               <option value="advanced">Advanced</option>
@@ -276,11 +344,11 @@
           </div>
           
           <div class="checkbox-group">
-            <input type="checkbox" id="player-newsletter" class="uber-checkbox">
+            <input type="checkbox" id="player-newsletter">
             <label for="player-newsletter" class="checkbox-label">Subscribe to Newsletter</label>
           </div>
           
-          <button type="submit" class="btn-accent w-full text-lg py-3 mt-6">
+          <button type="submit" class="btn-accent w-full mt-4">
             Register as Player
           </button>
           <div id="player-success" class="success-message">
@@ -311,7 +379,7 @@
           <div class="input-row">
             <div class="input-group">
               <select class="form-select" required>
-                <option value="">Attendance Certainty</option>
+                <option value="">Attendance</option>
                 <option value="definitely">Definitely</option>
                 <option value="likely">Likely</option>
                 <option value="maybe">Maybe</option>
@@ -319,7 +387,7 @@
             </div>
             <div class="input-group">
               <select class="form-select" required>
-                <option value="">Team Support</option>
+                <option value="">Supporting</option>
                 <option value="g-team">Under G Team</option>
                 <option value="adenike-team">Adenike Team</option>
                 <option value="both">Both</option>
@@ -329,15 +397,15 @@
           </div>
           
           <div class="checkbox-group">
-            <input type="checkbox" id="audience-newsletter" class="uber-checkbox">
+            <input type="checkbox" id="audience-newsletter">
             <label for="audience-newsletter" class="checkbox-label">Subscribe to Newsletter</label>
           </div>
           
-          <button type="submit" class="btn-accent w-full text-lg py-3 mt-6">
+          <button type="submit" class="btn-accent w-full mt-4">
             Register as Audience
           </button>
           <div id="audience-success" class="success-message">
-            ✨ Audience registration successful! We'll keep you updated with event details.
+            ✨ Audience registration successful! We'll keep you updated.
           </div>
         </form>
         
